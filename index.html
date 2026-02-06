@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Validator Pro | White Gold Luxury</title>
+    <title>Validator Pro | Compact Luxury</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,12 +14,10 @@
             --bg-color: #050505;
             --text-light: #e0e0e0;
             --text-muted: #888888;
-            
-            /* DORADO DE LUJO */
             --gold-color: #d4af37;
             --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
 
-            /* FONDOS DE BANCOS */
+            /* Fondos Bancos */
             --bg-default: linear-gradient(145deg, #151515, #000000);
             --bg-banorte: linear-gradient(145deg, #590000, #2b0000);
             --bg-bbva: linear-gradient(145deg, #002b4d, #001020);
@@ -38,73 +36,66 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            padding: 25px;
-            background-image: radial-gradient(circle at 50% 0%, #222222 0%, #000000 85%);
+            /* Usamos min-height para asegurar que cubra la pantalla pero permita scroll si es necesario */
+            min-height: 100vh; 
+            padding: 15px; /* Padding reducido */
+            background-image: radial-gradient(circle at 50% 0%, #222222 0%, #000000 90%);
         }
 
         .container {
             width: 100%;
-            max-width: 420px;
+            max-width: 400px; /* Un poco más estrecho para verse mejor en móvil */
             z-index: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* Espacio controlado entre elementos */
         }
 
-        /* HEADER ESTILO NOCTURA */
-        header { text-align: center; margin-bottom: 40px; }
+        /* HEADER COMPACTO */
+        header { text-align: center; margin-bottom: 5px; }
 
         h1 {
             font-family: 'Cinzel Decorative', serif;
-            font-size: 2.8rem; /* Un poco más grande */
-            font-weight: 700; /* Más peso */
-            letter-spacing: 1px;
-            /* Texto Dorado */
+            font-size: 2.2rem; /* Tamaño ajustado */
+            font-weight: 700;
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 8px;
-            text-shadow: 0 4px 20px rgba(191, 149, 63, 0.3);
+            margin: 0;
+            text-shadow: 0 4px 15px rgba(191, 149, 63, 0.25);
             position: relative;
             display: inline-block;
         }
-
-        /* Decoración sutil a los lados del título (inspirado en la imagen) */
+        
+        /* Líneas decorativas ajustadas */
         h1::before, h1::after {
-            content: '';
-            display: block;
-            width: 30px;
-            height: 2px;
-            background: var(--gold-gradient);
-            position: absolute;
-            top: 50%;
-            opacity: 0.6;
+            content: ''; display: block; width: 20px; height: 1px;
+            background: var(--gold-gradient); position: absolute; top: 55%; opacity: 0.5;
         }
-        h1::before { left: -40px; }
-        h1::after { right: -40px; }
+        h1::before { left: -30px; }
+        h1::after { right: -30px; }
 
         p.subtitle {
-            color: var(--text-muted);
-            font-size: 0.7rem;
-            letter-spacing: 5px;
-            text-transform: uppercase;
+            color: var(--text-muted); font-size: 0.6rem; letter-spacing: 4px; text-transform: uppercase; margin-top: 5px;
         }
 
-        /* TARJETA VISUAL */
+        /* TARJETA VISUAL COMPACTA */
         .credit-card {
             background: var(--bg-default);
-            border-radius: 18px;
-            padding: 30px;
+            border-radius: 16px;
+            padding: 20px 25px; /* Menos padding interno */
             aspect-ratio: 1.58/1;
             width: 100%;
             position: relative;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.08) inset;
-            margin-bottom: 40px;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.08) inset;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             overflow: hidden;
-            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
         }
         
+        /* Clases de Bancos */
         .credit-card.bank-banorte { background: var(--bg-banorte); }
         .credit-card.bank-bbva { background: var(--bg-bbva); }
         .credit-card.bank-santander { background: var(--bg-santander); }
@@ -112,106 +103,96 @@
         .credit-card.bank-bofa { background: var(--bg-bofa); }
         .credit-card.bank-citi { background: var(--bg-citi); }
 
-        .card-top { height: 35px; display: flex; align-items: flex-start; }
+        .card-top { height: 30px; display: flex; align-items: flex-start; }
 
         .bank-logo {
-            height: 28px; width: auto; object-fit: contain;
+            height: 24px; width: auto; object-fit: contain;
             filter: brightness(0) invert(1) drop-shadow(0 2px 4px rgba(0,0,0,0.5));
             opacity: 0; transform: translateY(-10px); transition: all 0.5s ease;
         }
         .bank-logo.visible { opacity: 1; transform: translateY(0); }
 
-        /* Middle: Número Centrado CORREGIDO */
+        /* Número */
         .card-number {
             font-family: 'Courier Prime', monospace;
-            font-size: clamp(1.4rem, 5vw, 1.8rem);
-            letter-spacing: 3px; 
-            color: #ffffff;
+            font-size: clamp(1.3rem, 5vw, 1.6rem);
+            letter-spacing: 2px; color: #ffffff;
             text-shadow: 0 2px 5px rgba(0,0,0,0.8);
-            text-align: center; 
-            width: 100%;
-            /* TRUCO PARA CENTRAR: Margen negativo igual al letter-spacing */
-            margin-right: -3px; 
-            margin-top: 10px; z-index: 2; white-space: nowrap; font-weight: 700;
+            text-align: center; width: 100%;
+            margin-right: -2px; /* Corrección de centrado */
+            margin-top: 5px; z-index: 2; white-space: nowrap; font-weight: 700;
         }
 
-        /* Bottom: Detalles con NUEVA TIPOGRAFÍA CURSIVA */
+        /* Bottom: Detalles Ajustados */
         .card-bottom { display: flex; justify-content: space-between; align-items: flex-end; z-index: 2; }
-        .card-details { display: flex; gap: 40px; }
+        .card-details { display: flex; gap: 30px; }
         
         .detail-box label {
-            display: block; 
-            /* Nueva fuente cursiva */
-            font-family: 'Pinyon Script', cursive;
-            font-size: 1.1rem; 
-            color: #ffffff; /* Blanco */
-            margin-bottom: -5px; /* Ajuste para la altura de la cursiva */
-            letter-spacing: 1px;
-            text-transform: none; /* Cursivas no van en mayúsculas */
+            /* Regresamos a la fuente legible y pequeña */
+            font-family: 'Montserrat', sans-serif;
+            display: block; font-size: 0.5rem; 
+            color: rgba(255,255,255,0.6);
+            text-transform: uppercase; margin-bottom: 2px; letter-spacing: 1.5px;
         }
-        .detail-box div {
-            /* Nueva fuente cursiva */
+        
+        /* Estilos específicos para cada dato */
+        .user-name {
+            /* Solo el nombre en cursiva elegante */
             font-family: 'Pinyon Script', cursive;
-            font-size: 1.5rem; 
-            color: #ffffff; /* Blanco */
-            text-transform: none;
-            letter-spacing: 0.5px;
+            font-size: 1.6rem; 
+            color: #fff; text-transform: none; line-height: 1;
+        }
+        
+        .expiry-date {
+            /* La fecha en fuente técnica legible */
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.9rem; color: #fff; letter-spacing: 1px;
+            font-weight: 700; padding-bottom: 3px;
         }
 
-        /* FORMULARIO */
+        /* FORMULARIO COMPACTO */
         .form-container {
             background: rgba(20, 20, 20, 0.7);
-            padding: 35px 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.6);
+            padding: 25px 20px; /* Menos padding */
+            border-radius: 16px;
+            box-shadow: 0 10px 30px -5px rgba(0,0,0,0.6);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.06);
         }
 
-        .input-group { margin-bottom: 25px; }
+        .input-group { margin-bottom: 20px; } /* Menos espacio entre inputs */
         
         .input-label {
-            display: block; 
-            color: #cccccc;
-            font-size: 0.7rem; margin-bottom: 12px;
-            letter-spacing: 2px; text-transform: uppercase; font-weight: 600;
+            display: block; color: #cccccc;
+            font-size: 0.65rem; margin-bottom: 8px;
+            letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600;
         }
 
         input {
             width: 100%; background: transparent; border: none;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.15); padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15); padding: 8px 0;
             color: #fff; font-family: 'Montserrat', sans-serif;
-            font-size: 1.1rem; letter-spacing: 2px; transition: all 0.3s ease;
+            font-size: 1rem; letter-spacing: 1.5px; transition: all 0.3s ease;
         }
-        input:focus {
-            outline: none; border-bottom: 1px solid var(--gold-color);
-        }
+        input:focus { outline: none; border-bottom: 1px solid var(--gold-color); }
         input::placeholder { color: rgba(255, 255, 255, 0.2); }
 
-        /* NUEVO BOTÓN: BLANCO CON BORDE DORADO Y LETRAS NEGRAS */
+        /* BOTÓN COMPACTO */
         .btn-add {
-            width: 100%; padding: 18px;
-            /* Fondo Blanco Brillante */
+            width: 100%; padding: 15px; /* Botón un poco más delgado */
             background: linear-gradient(145deg, #ffffff, #f0f0f0);
-            /* Borde Dorado */
             border: 2px solid var(--gold-color);
-            border-radius: 12px;
-            /* Texto Negro */
+            border-radius: 10px;
             color: #000000;
-            font-weight: 700; font-size: 0.9rem;
-            letter-spacing: 3px; text-transform: uppercase;
+            font-weight: 700; font-size: 0.85rem;
+            letter-spacing: 2px; text-transform: uppercase;
             cursor: pointer; transition: all 0.4s ease;
-            margin-top: 15px;
-            /* Sombra blanca/dorada para efecto joya */
-            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1), inset 0 0 10px rgba(212, 175, 55, 0.2);
+            margin-top: 10px;
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1), inset 0 0 8px rgba(212, 175, 55, 0.2);
         }
-        
         .btn-add:hover {
-            background: var(--gold-gradient); /* Al pasar el mouse se vuelve dorado */
-            border-color: transparent;
-            color: #000000;
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
-            transform: translateY(-2px);
+            background: var(--gold-gradient); border-color: transparent;
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4); transform: translateY(-2px);
         }
         .btn-add:active { transform: translateY(0); }
 
@@ -224,16 +205,15 @@
         .modal-overlay.active { opacity: 1; pointer-events: all; }
         .modal-content {
             background: #111; border: 1px solid rgba(212, 175, 55, 0.3);
-            padding: 50px 40px; border-radius: 20px; text-align: center;
-            box-shadow: 0 20px 70px rgba(0,0,0,0.9);
-            transform: scale(0.95); transition: 0.4s;
-            max-width: 350px; width: 90%;
+            padding: 40px 30px; border-radius: 16px; text-align: center;
+            box-shadow: 0 20px 70px rgba(0,0,0,0.9); transform: scale(0.95); transition: 0.4s;
+            max-width: 320px; width: 90%;
         }
         .modal-overlay.active .modal-content { transform: scale(1); }
-        .status-icon { font-size: 4rem; margin-bottom: 20px; display: block; }
+        .status-icon { font-size: 3.5rem; margin-bottom: 15px; display: block; }
         .btn-close {
             background: transparent; border: 1px solid #444; color: #888;
-            padding: 10px 30px; border-radius: 50px; margin-top: 25px; cursor: pointer; transition: 0.3s;
+            padding: 8px 25px; border-radius: 50px; margin-top: 20px; cursor: pointer; transition: 0.3s;
         }
         .btn-close:hover { border-color: var(--gold-color); color: var(--gold-color); }
 
@@ -258,11 +238,11 @@
                 <div class="card-details">
                     <div class="detail-box">
                         <label>Titular</label>
-                        <div>Usuario</div>
+                        <div class="user-name">Usuario</div>
                     </div>
                     <div class="detail-box">
                         <label>Vence</label>
-                        <div id="displayExpiry">MM/AA</div>
+                        <div id="displayExpiry" class="expiry-date">MM/AA</div>
                     </div>
                 </div>
             </div>
@@ -286,14 +266,14 @@
     <div class="modal-overlay" id="resultModal">
         <div class="modal-content">
             <div class="status-icon" id="modalIcon"></div>
-            <h3 style="color: var(--gold-color); font-family: 'Cinzel Decorative'; margin-bottom: 15px;" id="modalTitle"></h3>
-            <p style="color: #aaa; font-size: 0.9rem;" id="modalMsg"></p>
+            <h3 style="color: var(--gold-color); font-family: 'Cinzel Decorative'; margin-bottom: 10px;" id="modalTitle"></h3>
+            <p style="color: #aaa; font-size: 0.85rem;" id="modalMsg"></p>
             <button class="btn-close" id="btnClose">Cerrar</button>
         </div>
     </div>
 
     <script>
-        // --- LOGOS & DATOS ---
+        // LOGOS BANCOS
         const bankLogos = {
             banorte: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Banorte_logo.svg/1024px-Banorte_logo.svg.png', 
             bbva: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/BBVA_2019.svg/1024px-BBVA_2019.svg.png',
@@ -303,6 +283,7 @@
             citi: 'https://upload.wikimedia.org/wikipedia/commons/1/1b/Citi.svg'
         };
 
+        // BASE DE DATOS BIN
         const binDatabase = {
             '491566': 'banorte', '525678': 'banorte',
             '415231': 'bbva',    '557907': 'bbva',
@@ -318,7 +299,7 @@
         const bankLogoImg = document.getElementById('bankLogo');
         const resultModal = document.getElementById('resultModal');
 
-        // FUNCIÓN PRINCIPAL DE UI
+        // UI UPDATE
         function updateCardUI(numberRaw) {
             const bin = numberRaw.substring(0, 6);
             const detectedBank = binDatabase[bin];
@@ -339,7 +320,7 @@
             document.getElementById('displayExpiry').innerText = inputExpiry.value || 'MM/AA';
         }
 
-        // VALIDACIÓN (Luhn)
+        // LUHN CHECK
         function luhnCheck(val) {
             let sum = 0, shouldDouble = false;
             for (let i = val.length - 1; i >= 0; i--) {
@@ -350,6 +331,7 @@
             return (sum % 10) === 0;
         }
 
+        // EXPIRY CHECK
         function validateExpiry(dateString) {
             if (!/^\d{2}\/\d{2}$/.test(dateString)) return false;
             const [month, yearStr] = dateString.split('/').map(Number);
@@ -359,7 +341,7 @@
             return true;
         }
 
-        // EVENTOS
+        // LISTENERS
         inputNumber.addEventListener('input', (e) => {
             let val = e.target.value.replace(/\D/g, '');
             e.target.value = val.replace(/(\d{4})(?=\d)/g, '$1 ').trim();
@@ -382,12 +364,12 @@
 
             let isValid = true; 
             let title = "TARJETA ACEPTADA";
-            let msg = "Tarjeta validada correctamente.";
+            let msg = "Validada correctamente.";
 
             if (numRaw.length < 13 || !luhnCheck(numRaw)) {
                 isValid = false; title = "NO VÁLIDA"; msg = "Error en número de tarjeta.";
             } else if (!validateExpiry(expRaw)) {
-                isValid = false; title = "NO VÁLIDA"; msg = "Fecha incorrecta o vencida.";
+                isValid = false; title = "NO VÁLIDA"; msg = "Fecha incorrecta.";
             }
 
             modalIcon.innerText = isValid ? '✨' : '⚠️';
