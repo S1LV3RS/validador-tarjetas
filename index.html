@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Validator Pro | Pure Minimal</title>
+    <title>Validator Pro | Compact Gold</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +18,7 @@
             --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
 
             /* Fondos Bancos */
-            --bg-default: linear-gradient(145deg, #1a1a1a, #0a0a0a);
+            --bg-default: linear-gradient(145deg, #181818, #080808);
             --bg-banorte: linear-gradient(145deg, #590000, #2b0000);
             --bg-bbva: linear-gradient(145deg, #002b4d, #001020);
             --bg-santander: linear-gradient(145deg, #7a0000, #330000);
@@ -29,79 +29,73 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* PANTALLA FIJA LIMPIA (Sin marco) */
-        html, body {
-            height: 100%;
-            width: 100%;
-            overflow: hidden; /* Sin scroll */
+        body {
             background-color: var(--bg-color);
+            color: var(--text-light);
             font-family: 'Montserrat', sans-serif;
-            background-image: radial-gradient(circle at 50% 0%, #222222 0%, #000000 90%);
-        }
-
-        .main-content-wrapper {
-            height: 100%;
-            width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            min-height: 100vh; /* Centrado vertical perfecto */
+            padding: 15px;
+            background-image: radial-gradient(circle at 50% 0%, #222222 0%, #000000 90%);
+            overflow: hidden; /* Evita scroll innecesario si cabe */
         }
 
         .container {
             width: 100%;
-            max-width: 400px;
-            z-index: 1;
+            max-width: 380px; /* Ancho controlado para que no se estire */
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 15px; /* Espacio reducido entre elementos */
+            position: relative;
         }
 
-        /* HEADER */
-        header { text-align: center; margin-bottom: 10px; }
+        /* HEADER COMPACTO */
+        header { text-align: center; margin-bottom: 5px; }
 
         h1 {
             font-family: 'Cinzel Decorative', serif;
-            font-size: 2.4rem;
+            font-size: 2.2rem;
             font-weight: 700;
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin: 0;
-            text-shadow: 0 4px 20px rgba(191, 149, 63, 0.2);
-            position: relative;
+            text-shadow: 0 4px 15px rgba(191, 149, 63, 0.25);
             display: inline-block;
+            position: relative;
         }
-        
-        /* Líneas decorativas sutiles */
+
+        /* Líneas decorativas más cortas */
         h1::before, h1::after {
-            content: ''; display: block; width: 25px; height: 1px;
-            background: var(--gold-gradient); position: absolute; top: 55%; opacity: 0.4;
+            content: ''; display: block; width: 20px; height: 1px;
+            background: var(--gold-gradient); position: absolute; top: 55%; opacity: 0.5;
         }
-        h1::before { left: -40px; }
-        h1::after { right: -40px; }
+        h1::before { left: -30px; }
+        h1::after { right: -30px; }
 
         p.subtitle {
-            color: var(--text-muted); font-size: 0.65rem; letter-spacing: 5px; text-transform: uppercase; margin-top: 5px; opacity: 0.7;
+            color: var(--text-muted); font-size: 0.6rem; letter-spacing: 4px; text-transform: uppercase; margin-top: 5px; opacity: 0.8;
         }
 
         /* TARJETA VISUAL */
         .credit-card {
             background: var(--bg-default);
-            border-radius: 18px;
-            padding: 25px 30px;
+            border-radius: 16px;
+            padding: 20px 25px; /* Menos relleno */
             aspect-ratio: 1.58/1;
             width: 100%;
             position: relative;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.08) inset;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             overflow: hidden;
-            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
         }
         
-        /* Clases de Bancos */
+        /* Clases Bancos */
         .credit-card.bank-banorte { background: var(--bg-banorte); }
         .credit-card.bank-bbva { background: var(--bg-bbva); }
         .credit-card.bank-santander { background: var(--bg-santander); }
@@ -109,97 +103,100 @@
         .credit-card.bank-bofa { background: var(--bg-bofa); }
         .credit-card.bank-citi { background: var(--bg-citi); }
 
-        .card-top { height: 35px; display: flex; align-items: flex-start; }
+        .card-top { height: 30px; display: flex; align-items: flex-start; justify-content: space-between; }
 
+        /* Logo Banco (Izquierda Arriba) */
         .bank-logo {
-            height: 28px; width: auto; object-fit: contain;
+            height: 24px; width: auto; object-fit: contain;
             filter: brightness(0) invert(1) drop-shadow(0 2px 4px rgba(0,0,0,0.5));
             opacity: 0; transform: translateY(-10px); transition: all 0.5s ease;
         }
         .bank-logo.visible { opacity: 1; transform: translateY(0); }
 
-        /* NÚMERO DE TARJETA */
+        /* Número Dinámico */
         .card-number {
             font-family: 'Courier Prime', monospace;
-            font-size: clamp(1.4rem, 5vw, 1.8rem);
-            letter-spacing: 3px; 
-            color: #ffffff;
+            font-size: clamp(1.4rem, 6vw, 1.8rem);
+            letter-spacing: 2px; color: #ffffff;
             text-shadow: 0 2px 5px rgba(0,0,0,0.8);
             text-align: center; width: 100%;
-            margin-right: -3px; /* Corrección de centrado */
-            margin-top: 10px; z-index: 2; white-space: nowrap; font-weight: 700;
-            
-            /* Altura mínima para que no salte el diseño cuando está vacío */
-            min-height: 2rem; 
+            margin-right: -2px; margin-top: 5px; z-index: 2; white-space: nowrap; font-weight: 700;
+            min-height: 28px; /* Mantiene la altura aunque esté vacío */
         }
 
-        /* BOTTOM: Detalles */
+        /* Parte Inferior: Detalles + Logo Red */
         .card-bottom { display: flex; justify-content: space-between; align-items: flex-end; z-index: 2; }
-        .card-details { display: flex; gap: 40px; }
+        
+        .card-details { display: flex; gap: 25px; }
         
         .detail-box label {
             font-family: 'Montserrat', sans-serif;
-            display: block; font-size: 0.55rem; 
+            display: block; font-size: 0.5rem; 
             color: rgba(255,255,255,0.6);
             text-transform: uppercase; margin-bottom: 2px; letter-spacing: 1.5px;
         }
         
-        /* Estilos conservados */
         .user-name {
             font-family: 'Pinyon Script', cursive;
-            font-size: 1.7rem; 
-            color: #fff; text-transform: none; line-height: 1;
+            font-size: 1.5rem; color: #fff; text-transform: none; line-height: 1;
         }
         
         .expiry-date {
             font-family: 'Courier Prime', monospace;
-            font-size: 0.95rem; color: #fff; letter-spacing: 1px;
-            font-weight: 700; padding-bottom: 3px;
+            font-size: 0.9rem; color: #fff; letter-spacing: 1px; font-weight: 700; padding-bottom: 2px;
         }
 
-        /* FORMULARIO */
+        /* Logo Red (Derecha Abajo: Visa/MC) */
+        .network-logo {
+            height: 35px; width: auto; object-fit: contain;
+            opacity: 0; transform: translateX(10px); transition: all 0.5s ease;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+        }
+        .network-logo.visible { opacity: 1; transform: translateX(0); }
+
+        /* FORMULARIO COMPACTO */
         .form-container {
-            background: rgba(20, 20, 20, 0.7);
-            padding: 30px 25px;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.6);
+            background: rgba(20, 20, 20, 0.75);
+            padding: 20px 20px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px -5px rgba(0,0,0,0.6);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.06);
         }
 
-        .input-group { margin-bottom: 20px; }
+        .input-group { margin-bottom: 15px; }
         
         .input-label {
             display: block; color: #cccccc;
-            font-size: 0.7rem; margin-bottom: 10px;
+            font-size: 0.65rem; margin-bottom: 5px;
             letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600;
         }
 
         input {
             width: 100%; background: transparent; border: none;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.15); padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15); padding: 8px 0;
             color: #fff; font-family: 'Montserrat', sans-serif;
-            font-size: 1.1rem; letter-spacing: 2px; transition: all 0.3s ease;
+            font-size: 1rem; letter-spacing: 2px; transition: all 0.3s ease;
         }
         input:focus { outline: none; border-bottom: 1px solid var(--gold-color); }
-        input::placeholder { color: rgba(255, 255, 255, 0.2); }
+        input::placeholder { color: rgba(255, 255, 255, 0.15); }
 
-        /* BOTÓN BLANCO Y DORADO */
+        /* BOTÓN BLANCO */
         .btn-add {
-            width: 100%; padding: 16px;
+            width: 100%; padding: 14px;
             background: linear-gradient(145deg, #ffffff, #f0f0f0);
             border: 2px solid var(--gold-color);
-            border-radius: 12px;
+            border-radius: 10px;
             color: #000000;
-            font-weight: 700; font-size: 0.9rem;
+            font-weight: 700; font-size: 0.85rem;
             letter-spacing: 2px; text-transform: uppercase;
             cursor: pointer; transition: all 0.4s ease;
-            margin-top: 10px;
-            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1), inset 0 0 10px rgba(212, 175, 55, 0.2);
+            margin-top: 5px;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
         }
         .btn-add:hover {
             background: var(--gold-gradient); border-color: transparent;
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4); transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4); transform: translateY(-2px);
         }
         .btn-add:active { transform: translateY(0); }
 
@@ -207,14 +204,14 @@
         .modal-overlay {
             position: fixed; inset: 0; background: rgba(0,0,0,0.95); backdrop-filter: blur(8px);
             display: flex; justify-content: center; align-items: center;
-            opacity: 0; pointer-events: none; transition: 0.4s; z-index: 10000;
+            opacity: 0; pointer-events: none; transition: 0.4s; z-index: 999;
         }
         .modal-overlay.active { opacity: 1; pointer-events: all; }
         .modal-content {
             background: #111; border: 1px solid rgba(212, 175, 55, 0.3);
             padding: 40px 30px; border-radius: 16px; text-align: center;
             box-shadow: 0 20px 70px rgba(0,0,0,0.9); transform: scale(0.95); transition: 0.4s;
-            max-width: 320px; width: 90%;
+            max-width: 300px; width: 90%;
         }
         .modal-overlay.active .modal-content { transform: scale(1); }
         .status-icon { font-size: 3.5rem; margin-bottom: 15px; display: block; }
@@ -228,47 +225,46 @@
 </head>
 <body>
 
-    <div class="main-content-wrapper">
-        <div class="container">
-            <header>
-                <h1>VALIDATOR PRO</h1>
-                <p class="subtitle">Luxury System</p>
-            </header>
+    <div class="container">
+        <header>
+            <h1>VALIDATOR PRO</h1>
+            <p class="subtitle">Luxury System</p>
+        </header>
 
-            <div class="credit-card" id="cardVisual">
-                <div class="card-top">
-                    <img src="" alt="" class="bank-logo" id="bankLogo">
-                </div>
-                
-                <div class="card-number" id="displayNumber"></div>
-                
-                <div class="card-bottom">
-                    <div class="card-details">
-                        <div class="detail-box">
-                            <label>Titular</label>
-                            <div class="user-name">Usuario</div>
-                        </div>
-                        <div class="detail-box">
-                            <label>Vence</label>
-                            <div id="displayExpiry" class="expiry-date">MM/AA</div>
-                        </div>
+        <div class="credit-card" id="cardVisual">
+            <div class="card-top">
+                <img src="" alt="" class="bank-logo" id="bankLogo">
+            </div>
+            
+            <div class="card-number" id="displayNumber"></div>
+            
+            <div class="card-bottom">
+                <div class="card-details">
+                    <div class="detail-box">
+                        <label>Titular</label>
+                        <div class="user-name">Usuario</div>
+                    </div>
+                    <div class="detail-box">
+                        <label>Vence</label>
+                        <div id="displayExpiry" class="expiry-date">MM/AA</div>
                     </div>
                 </div>
+                <img src="" alt="" class="network-logo" id="networkLogo">
+            </div>
+        </div>
+
+        <div class="form-container">
+            <div class="input-group">
+                <label class="input-label">Número de Tarjeta</label>
+                <input type="text" id="inputNumber" placeholder="0000 0000 0000 0000" maxlength="19" inputmode="numeric" autocomplete="cc-number">
             </div>
 
-            <div class="form-container">
-                <div class="input-group">
-                    <label class="input-label">Número de Tarjeta</label>
-                    <input type="text" id="inputNumber" placeholder="0000 0000 0000 0000" maxlength="19" inputmode="numeric" autocomplete="cc-number">
-                </div>
-
-                <div class="input-group">
-                    <label class="input-label">Vencimiento (MM/AA)</label>
-                    <input type="text" id="inputExpiry" placeholder="MM/AA" maxlength="5" inputmode="numeric" autocomplete="cc-exp">
-                </div>
-
-                <button class="btn-add" id="btnValidate">Agregar Tarjeta</button>
+            <div class="input-group">
+                <label class="input-label">Vencimiento (MM/AA)</label>
+                <input type="text" id="inputExpiry" placeholder="MM/AA" maxlength="5" inputmode="numeric" autocomplete="cc-exp">
             </div>
+
+            <button class="btn-add" id="btnValidate">Agregar Tarjeta</button>
         </div>
     </div>
 
@@ -282,7 +278,7 @@
     </div>
 
     <script>
-        // LOGOS Y DATOS
+        // --- RECURSOS: LOGOS ---
         const bankLogos = {
             banorte: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Banorte_logo.svg/1024px-Banorte_logo.svg.png', 
             bbva: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/BBVA_2019.svg/1024px-BBVA_2019.svg.png',
@@ -292,6 +288,14 @@
             citi: 'https://upload.wikimedia.org/wikipedia/commons/1/1b/Citi.svg'
         };
 
+        const networkLogos = {
+            visa: 'https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg',
+            mastercard: 'https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg',
+            amex: 'https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo.svg',
+            discover: 'https://upload.wikimedia.org/wikipedia/commons/5/57/Discover_Card_logo.svg'
+        };
+
+        // --- BINs ---
         const binDatabase = {
             '491566': 'banorte', '525678': 'banorte',
             '415231': 'bbva',    '557907': 'bbva',
@@ -305,37 +309,52 @@
         const inputExpiry = document.getElementById('inputExpiry');
         const cardVisual = document.getElementById('cardVisual');
         const bankLogoImg = document.getElementById('bankLogo');
+        const networkLogoImg = document.getElementById('networkLogo');
         const resultModal = document.getElementById('resultModal');
 
-        // FUNCIÓN PRINCIPAL DE UI
+        // UI UPDATE
         function updateCardUI(numberRaw) {
             const bin = numberRaw.substring(0, 6);
             const detectedBank = binDatabase[bin];
 
-            // 1. Resetear logos y fondo
+            // 1. Resetear estilos de banco
             cardVisual.className = 'credit-card'; 
             bankLogoImg.classList.remove('visible');
             setTimeout(() => { if(!bankLogoImg.classList.contains('visible')) bankLogoImg.src = ''; }, 200);
 
-            // 2. Aplicar banco si se detecta
+            // 2. Aplicar Banco (Top Left)
             if (detectedBank) {
                 cardVisual.classList.add(`bank-${detectedBank}`);
                 bankLogoImg.src = bankLogos[detectedBank];
                 void bankLogoImg.offsetWidth;
                 bankLogoImg.classList.add('visible');
             }
+
+            // 3. Aplicar Red (Bottom Right)
+            // Lógica: Si empieza con 4=Visa, 5=MC, 3=Amex, etc.
+            let network = null;
+            if (/^4/.test(numberRaw)) network = 'visa';
+            else if (/^5[1-5]/.test(numberRaw)) network = 'mastercard';
+            else if (/^3[47]/.test(numberRaw)) network = 'amex';
+            else if (/^6(?:011|5)/.test(numberRaw)) network = 'discover';
+
+            if (network) {
+                networkLogoImg.src = networkLogos[network];
+                networkLogoImg.classList.add('visible');
+            } else {
+                networkLogoImg.classList.remove('visible');
+            }
             
-            // 3. ACTUALIZACIÓN DEL NÚMERO (Lógica nueva: vacío si no hay datos)
+            // 4. Actualizar Números (Vacío si no hay nada)
             let formattedNum = '';
             if (numberRaw.length > 0) {
                 formattedNum = numberRaw.match(/.{1,4}/g)?.join(' ') || numberRaw;
             }
-            // Si formattedNum está vacío, el div queda vacío (sin ####)
             document.getElementById('displayNumber').innerText = formattedNum;
             document.getElementById('displayExpiry').innerText = inputExpiry.value || 'MM/AA';
         }
 
-        // LÓGICA VALIDACIÓN
+        // VALIDACIÓN
         function luhnCheck(val) {
             let sum = 0, shouldDouble = false;
             for (let i = val.length - 1; i >= 0; i--) {
@@ -355,7 +374,7 @@
             return true;
         }
 
-        // EVENT LISTENERS
+        // LISTENERS
         inputNumber.addEventListener('input', (e) => {
             let val = e.target.value.replace(/\D/g, '');
             e.target.value = val.replace(/(\d{4})(?=\d)/g, '$1 ').trim();
