@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Validator Pro | Silver Fixed Final</title>
+    <title>Validator Pro | Silver Ultimate</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +13,7 @@
         :root {
             --bg-color: #050505;
             --text-light: #e0e0e0;
-            --text-muted: #888888;
+            --text-muted: #999999;
             
             /* PALETA SILVER / CROMO */
             --silver-color: #e0e0e0;
@@ -21,7 +21,7 @@
             --silver-dark: #a0a0a0;
             --silver-gradient: linear-gradient(135deg, #a0a0a0, #ffffff, #a0a0a0);
 
-            /* FONDOS BANCOS */
+            /* FONDOS DE BANCOS */
             --bg-default: linear-gradient(145deg, #121212, #000000);
             --bg-banorte: linear-gradient(145deg, #590000, #2b0000);
             --bg-bbva: linear-gradient(145deg, #002b4d, #001020);
@@ -33,7 +33,7 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* LAYOUT FIJO */
+        /* ESTRUCTURA TIPO CYBERPUNK (Flex Column + 100vh) */
         html, body {
             height: 100%;
             width: 100%;
@@ -52,9 +52,11 @@
             height: 100%;
             max-height: 850px;
             padding: 20px;
+            
+            /* Distribución vertical automática */
             display: flex;
             flex-direction: column;
-            justify-content: space-evenly;
+            justify-content: space-evenly; 
             align-items: center;
         }
 
@@ -117,19 +119,22 @@
         }
         .bank-logo.visible { opacity: 1; transform: translateY(0); }
 
-        /* --- NÚMERO CORREGIDO --- */
+        /* --- CORRECCIÓN DE CENTRADO (FLEXBOX) --- */
         .card-number {
             font-family: 'Courier Prime', monospace;
             font-size: clamp(1.4rem, 6vw, 1.8rem);
-            letter-spacing: 3px; /* Espacio entre letras */
+            letter-spacing: 3px; 
             color: #ffffff;
             text-shadow: 0 2px 5px rgba(0,0,0,0.8);
-            text-align: center; 
-            width: 100%;
-            /* TRUCO PARA CENTRADO PERFECTO: */
-            text-indent: 3px; /* Compensa el letter-spacing al inicio */
             
-            margin-top: 5px; z-index: 2; white-space: nowrap; font-weight: 700;
+            /* Usamos Flexbox para forzar el centro absoluto */
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            
+            margin-top: 5px; 
+            z-index: 2; 
+            font-weight: 700;
             min-height: 28px;
         }
 
@@ -138,7 +143,7 @@
         
         .detail-box label {
             font-family: 'Montserrat', sans-serif; display: block; font-size: 0.55rem; 
-            color: rgba(255,255,255,0.6); text-transform: uppercase; margin-bottom: 2px; letter-spacing: 1.5px;
+            color: rgba(255,255,255,0.7); text-transform: uppercase; margin-bottom: 2px; letter-spacing: 1.5px;
         }
         
         .user-name {
@@ -183,7 +188,7 @@
         input:focus { outline: none; border-bottom: 1px solid var(--silver-shine); }
         input::placeholder { color: rgba(255, 255, 255, 0.2); }
 
-        /* BOTÓN SILVER */
+        /* BOTÓN PLATEADO */
         .btn-add {
             width: 100%; padding: 16px;
             background: linear-gradient(145deg, #ffffff, #dcdcdc);
@@ -198,7 +203,7 @@
         }
         .btn-add:hover {
             background: var(--silver-gradient); border-color: transparent;
-            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.4); transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3); transform: translateY(-2px);
         }
         .btn-add:active { transform: translateY(0); }
 
@@ -218,7 +223,7 @@
         .modal-overlay.active .modal-content { transform: scale(1); }
         .status-icon { font-size: 3.5rem; margin-bottom: 15px; display: block; }
         .btn-close {
-            background: transparent; border: 1px solid #555; color: #aaa;
+            background: transparent; border: 1px solid #666; color: #aaa;
             padding: 8px 25px; border-radius: 50px; margin-top: 20px; cursor: pointer; transition: 0.3s;
         }
         .btn-close:hover { border-color: var(--silver-shine); color: var(--silver-shine); }
