@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Validator Pro | Silver Ultimate</title>
+    <title>Validator Pro | Linear Silver</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,15 +13,15 @@
         :root {
             --bg-color: #050505;
             --text-light: #e0e0e0;
-            --text-muted: #999999;
+            --text-muted: #888888;
             
-            /* PALETA SILVER / CROMO */
+            /* PALETA SILVER */
             --silver-color: #e0e0e0;
             --silver-shine: #ffffff;
             --silver-dark: #a0a0a0;
             --silver-gradient: linear-gradient(135deg, #a0a0a0, #ffffff, #a0a0a0);
 
-            /* FONDOS DE BANCOS */
+            /* FONDOS BANCOS */
             --bg-default: linear-gradient(145deg, #121212, #000000);
             --bg-banorte: linear-gradient(145deg, #590000, #2b0000);
             --bg-bbva: linear-gradient(145deg, #002b4d, #001020);
@@ -33,14 +33,15 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* ESTRUCTURA TIPO CYBERPUNK (Flex Column + 100vh) */
+        /* LAYOUT FIJO CENTRADO */
         html, body {
             height: 100%;
             width: 100%;
-            overflow: hidden; /* CERO SCROLL */
+            overflow: hidden; /* Cero Scroll */
             background-color: var(--bg-color);
             font-family: 'Montserrat', sans-serif;
             background-image: radial-gradient(circle at 50% 0%, #2a2a2a 0%, #000000 90%);
+            /* Centrado Flex Perfecto */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -48,24 +49,21 @@
 
         .main-wrapper {
             width: 100%;
-            max-width: 400px;
-            height: 100%;
-            max-height: 850px;
+            max-width: 380px; /* Ancho ideal móvil */
             padding: 20px;
-            
-            /* Distribución vertical automática */
+            /* AQUÍ ESTÁ LA CORRECCIÓN: */
             display: flex;
             flex-direction: column;
-            justify-content: space-evenly; 
-            align-items: center;
+            justify-content: center; /* Centrado en bloque, no esparcido */
+            gap: 25px; /* Espacio constante y elegante entre elementos */
         }
 
         /* HEADER */
-        header { text-align: center; width: 100%; }
+        header { text-align: center; margin-bottom: 5px; }
 
         h1 {
             font-family: 'Cinzel Decorative', serif;
-            font-size: 2.4rem;
+            font-size: 2.3rem;
             font-weight: 700;
             background: var(--silver-gradient);
             -webkit-background-clip: text;
@@ -119,22 +117,15 @@
         }
         .bank-logo.visible { opacity: 1; transform: translateY(0); }
 
-        /* --- CORRECCIÓN DE CENTRADO (FLEXBOX) --- */
+        /* NÚMEROS CENTRADOS CON FLEXBOX */
         .card-number {
             font-family: 'Courier Prime', monospace;
             font-size: clamp(1.4rem, 6vw, 1.8rem);
             letter-spacing: 3px; 
             color: #ffffff;
             text-shadow: 0 2px 5px rgba(0,0,0,0.8);
-            
-            /* Usamos Flexbox para forzar el centro absoluto */
-            display: flex;
-            justify-content: center;
-            width: 100%;
-            
-            margin-top: 5px; 
-            z-index: 2; 
-            font-weight: 700;
+            display: flex; justify-content: center; width: 100%; /* Centrado absoluto */
+            margin-top: 5px; z-index: 2; font-weight: 700;
             min-height: 28px;
         }
 
@@ -198,7 +189,7 @@
             font-weight: 700; font-size: 0.9rem;
             letter-spacing: 2px; text-transform: uppercase;
             cursor: pointer; transition: all 0.4s ease;
-            margin-top: 10px;
+            margin-top: 5px;
             box-shadow: 0 5px 15px rgba(255, 255, 255, 0.15);
         }
         .btn-add:hover {
@@ -223,7 +214,7 @@
         .modal-overlay.active .modal-content { transform: scale(1); }
         .status-icon { font-size: 3.5rem; margin-bottom: 15px; display: block; }
         .btn-close {
-            background: transparent; border: 1px solid #666; color: #aaa;
+            background: transparent; border: 1px solid #555; color: #aaa;
             padding: 8px 25px; border-radius: 50px; margin-top: 20px; cursor: pointer; transition: 0.3s;
         }
         .btn-close:hover { border-color: var(--silver-shine); color: var(--silver-shine); }
