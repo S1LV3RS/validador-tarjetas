@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Validator Pro | Silver Perfect</title>
+    <title>Validator Pro | Silver Clean</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -54,7 +54,7 @@
             flex-direction: column;
             justify-content: center; 
             align-items: center;
-            gap: 25px;
+            gap: 30px; /* Separación elegante */
         }
 
         /* HEADER */
@@ -116,24 +116,18 @@
         }
         .bank-logo.visible { opacity: 1; transform: translateY(0); }
 
-        /* --- NÚMERO CORREGIDO PARA QUE SEA LINEAL --- */
+        /* NÚMERO CENTRADO Y LINEAL */
         .card-number {
             font-family: 'Courier Prime', monospace;
-            /* Tamaño ajustado para asegurar una línea */
             font-size: clamp(1.1rem, 5vw, 1.6rem); 
             color: #ffffff;
             text-shadow: 0 2px 5px rgba(0,0,0,1);
-            
-            /* FUERZA UNA SOLA LÍNEA */
             white-space: nowrap; 
             display: block;
             text-align: center;
             width: 100%;
-            
-            /* Espaciado ajustado */
             letter-spacing: 2px;
             text-indent: 2px; 
-            
             margin-top: 5px; z-index: 2; font-weight: 700;
             min-height: 28px;
         }
@@ -153,27 +147,25 @@
             font-family: 'Courier Prime', monospace; font-size: 0.95rem; color: #fff; letter-spacing: 1px; font-weight: 700; padding-bottom: 2px;
         }
 
-        /* --- LOGO VISA REDUCIDO --- */
         .network-logo {
-            height: 25px; /* Reducido de 38px a 25px */
-            width: auto; object-fit: contain;
+            height: 25px; width: auto; object-fit: contain;
             opacity: 0; transform: translateX(10px); transition: all 0.5s ease;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
         }
         .network-logo.visible { opacity: 1; transform: translateX(0); }
 
-        /* FORMULARIO */
+        /* FORMULARIO LIMPIO (2 LÍNEAS) */
         .form-container {
             width: 100%;
             background: rgba(20, 20, 20, 0.8);
-            padding: 25px;
+            padding: 30px 25px;
             border-radius: 20px;
             box-shadow: 0 10px 30px -5px rgba(0,0,0,0.9);
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .input-group { margin-bottom: 20px; }
+        .input-group { margin-bottom: 25px; } /* Separación entre inputs */
         
         .input-label {
             display: block; color: var(--text-light);
@@ -200,7 +192,7 @@
             font-weight: 700; font-size: 0.9rem;
             letter-spacing: 2px; text-transform: uppercase;
             cursor: pointer; transition: all 0.4s ease;
-            margin-top: 5px;
+            margin-top: 10px; /* Un poco de aire antes del botón */
             box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
         }
         .btn-add:hover {
@@ -262,19 +254,30 @@
             </div>
         </div>
 
-        <div class="form-container">
+        <form class="form-container" autocomplete="on" onsubmit="return false;">
+            
             <div class="input-group">
                 <label class="input-label">Número de Tarjeta</label>
-                <input type="text" id="inputNumber" placeholder="0000 0000 0000 0000" maxlength="19" inputmode="numeric" autocomplete="cc-number">
+                <input type="text" id="inputNumber" 
+                       placeholder="0000 0000 0000 0000" 
+                       maxlength="19" 
+                       inputmode="numeric" 
+                       autocomplete="cc-number" 
+                       name="cc-number">
             </div>
 
             <div class="input-group">
                 <label class="input-label">Vencimiento (MM/AA)</label>
-                <input type="text" id="inputExpiry" placeholder="MM/AA" maxlength="5" inputmode="numeric" autocomplete="cc-exp">
+                <input type="text" id="inputExpiry" 
+                       placeholder="MM/AA" 
+                       maxlength="5" 
+                       inputmode="numeric" 
+                       autocomplete="cc-exp" 
+                       name="cc-exp">
             </div>
 
             <button class="btn-add" id="btnValidate">Agregar Tarjeta</button>
-        </div>
+        </form>
     </div>
 
     <div class="modal-overlay" id="resultModal">
@@ -387,7 +390,8 @@
             updateCardUI(inputNumber.value.replace(/\s/g,''));
         });
 
-        document.getElementById('btnValidate').addEventListener('click', () => {
+        document.getElementById('btnValidate').addEventListener('click', (e) => {
+            e.preventDefault();
             const numRaw = inputNumber.value.replace(/\s/g, '');
             const expRaw = inputExpiry.value;
             const modalIcon = document.getElementById('modalIcon');
