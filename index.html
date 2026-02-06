@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Validador Web</title>
+    <title>Validador Premium</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -16,7 +16,7 @@
             --success: #00ff88;
             --error: #ff0055;
             --gradient-btn: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
-            --card-gradient: linear-gradient(135deg, #1a1a24, #2a2a35);
+            --card-gradient: linear-gradient(135deg, #1c1c24, #2d2d3a);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -30,8 +30,10 @@
             align-items: center;
             min-height: 100vh;
             padding: 20px;
-            background-image: radial-gradient(circle at top right, rgba(0, 242, 255, 0.08), transparent 40%),
-                              radial-gradient(circle at bottom left, rgba(123, 44, 191, 0.08), transparent 40%);
+            /* Fondo sutilmente animado */
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 242, 255, 0.05), transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(123, 44, 191, 0.05), transparent 40%);
         }
 
         .container {
@@ -39,7 +41,7 @@
             max-width: 400px;
             display: flex;
             flex-direction: column;
-            gap: 30px;
+            gap: 35px;
             align-items: center;
         }
 
@@ -47,88 +49,129 @@
             text-align: center;
             font-weight: 800;
             font-size: 1.8rem;
+            letter-spacing: -1px;
             background: var(--gradient-btn);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+        }
+        .header-title p {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        /* TARJETA VIRTUAL */
+        /* --- TARJETA VIRTUAL REALISTA --- */
         .virtual-card {
             width: 100%;
-            aspect-ratio: 1.58/1;
+            aspect-ratio: 1.586/1; /* Ratio exacto ISO 7810 */
             background: var(--card-gradient);
             border-radius: 16px;
-            padding: 20px;
+            padding: 24px;
             position: relative;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(255,255,255,0.1);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: transform 0.3s;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .virtual-card:hover { transform: translateY(-5px); }
+
+        /* Efecto de ruido/textura en la tarjeta */
+        .virtual-card::before {
+            content: "";
+            position: absolute; inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+            opacity: 0.4; pointer-events: none;
         }
 
-        .card-top { display: flex; justify-content: space-between; align-items: flex-start; }
+        /* Parte Superior: Chip y Logo */
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            z-index: 2;
+        }
 
         .chip {
-            width: 45px; height: 32px;
-            background: linear-gradient(135deg, #d4af37, #a3842c);
+            width: 50px; height: 36px;
+            background: linear-gradient(135deg, #e0cba8 0%, #d4af37 50%, #a3842c 100%);
             border-radius: 6px;
             position: relative;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
         .chip::after {
             content: ''; position: absolute; inset: 0;
-            border: 1px solid rgba(0,0,0,0.2); border-radius: 6px;
-            background-image: repeating-linear-gradient(transparent, transparent 8px, rgba(0,0,0,0.1) 8px, rgba(0,0,0,0.1) 9px);
+            background: url("data:image/svg+xml,%3Csvg width='50' height='36' viewBox='0 0 50 36' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 0v36M25 0v36M40 0v36M0 12h50M0 24h50' stroke='rgba(0,0,0,0.35)' stroke-width='1' fill='none'/%3E%3C/svg%3E");
+            border-radius: 6px;
         }
 
-        .card-brand-logo { height: 35px; width: auto; object-fit: contain; }
+        .card-brand-logo {
+            height: 45px; /* Tamaño grande para que luzca */
+            width: auto;
+            object-fit: contain;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            opacity: 0;
+            transform: translateX(20px);
+        }
+        .card-brand-logo.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
 
+        /* Número de Tarjeta */
         .card-number-display {
             font-family: 'JetBrains Mono', monospace;
-            font-size: clamp(1.2rem, 5vw, 1.5rem);
+            font-size: clamp(1.3rem, 6vw, 1.7rem);
             letter-spacing: 2px;
-            text-align: center;
-            width: 100%;
+            color: #fff;
             text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-            margin: 10px 0;
+            margin-top: 20px;
+            z-index: 2;
+            white-space: nowrap;
         }
 
-        .card-details { display: flex; justify-content: space-between; align-items: flex-end; }
+        /* Detalles Inferiores */
+        .card-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            z-index: 2;
+        }
         
         .detail-group label {
-            display: block; font-size: 0.6rem; text-transform: uppercase;
-            color: var(--text-secondary); margin-bottom: 2px; letter-spacing: 1px;
+            display: block; font-size: 0.65rem; text-transform: uppercase;
+            color: rgba(255,255,255,0.6); margin-bottom: 4px; letter-spacing: 1px;
         }
         .detail-group div {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem; text-transform: uppercase;
+            font-size: 0.95rem; text-transform: uppercase;
+            color: #fff;
         }
 
-        /* FORMULARIO */
+        /* --- INPUT TERMINAL --- */
         .input-terminal {
             background: var(--card-bg);
-            padding: 25px;
+            padding: 30px;
             border-radius: 20px;
             width: 100%;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             border: 1px solid rgba(255,255,255,0.05);
         }
 
-        .terminal-header { display: flex; align-items: center; margin-bottom: 20px; }
-        .terminal-dots { display: flex; gap: 6px; }
-        .dot { width: 8px; height: 8px; border-radius: 50%; }
-        .dot.red { background: #ff5f56; } .dot.yellow { background: #ffbd2e; } .dot.green { background: #27c93f; }
-        
-        .input-group { margin-bottom: 20px; }
+        .input-group { margin-bottom: 25px; }
         
         .input-label {
             display: block; font-family: 'JetBrains Mono', monospace;
-            color: var(--accent-blue); margin-bottom: 8px; font-size: 0.85rem;
+            color: var(--accent-blue); margin-bottom: 10px; font-size: 0.85rem;
         }
         
         .input-field {
-            width: 100%; padding: 14px;
+            width: 100%; padding: 16px;
             background: rgba(0,0,0,0.3);
             border: 1px solid rgba(255,255,255,0.1);
             border-radius: 12px;
@@ -137,20 +180,24 @@
             font-size: 1.1rem;
             outline: none; transition: 0.3s;
         }
-        .input-field:focus { border-color: var(--accent-blue); }
+        .input-field:focus {
+            border-color: var(--accent-blue);
+            background: rgba(0, 242, 255, 0.05);
+        }
 
         .btn-validate {
-            width: 100%; padding: 16px; border: none; border-radius: 12px;
+            width: 100%; padding: 18px; border: none; border-radius: 12px;
             background: var(--gradient-btn); color: white;
-            font-size: 1rem; font-weight: 700; text-transform: uppercase;
-            cursor: pointer; box-shadow: 0 4px 15px rgba(0, 242, 255, 0.2);
+            font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+            cursor: pointer; box-shadow: 0 8px 20px rgba(0, 242, 255, 0.2);
+            transition: transform 0.2s;
         }
         .btn-validate:active { transform: scale(0.98); }
 
-        /* MODAL */
+        /* --- MODAL --- */
         .modal-overlay {
             position: fixed; inset: 0;
-            background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
+            background: rgba(0,0,0,0.85); backdrop-filter: blur(10px);
             display: flex; justify-content: center; align-items: center;
             opacity: 0; pointer-events: none; transition: 0.3s; z-index: 999;
             padding: 20px;
@@ -158,56 +205,79 @@
         .modal-overlay.active { opacity: 1; pointer-events: all; }
         
         .modal-content {
-            background: #181820; padding: 30px; border-radius: 24px;
-            text-align: center; width: 100%; max-width: 340px;
+            background: #181820; padding: 40px; border-radius: 24px;
+            text-align: center; width: 100%; max-width: 360px;
             border: 1px solid rgba(255,255,255,0.1);
-            transform: scale(0.9); transition: 0.4s;
+            transform: scale(0.9); transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         .modal-overlay.active .modal-content { transform: scale(1); }
 
-        .status-icon { font-size: 4rem; margin-bottom: 15px; display: block; }
+        .status-icon { font-size: 4.5rem; margin-bottom: 20px; display: block; }
+        .modal-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 10px; color: #fff; }
+        .modal-msg { color: #888; font-size: 0.95rem; line-height: 1.5; margin-bottom: 25px; }
+
         .btn-close {
-            margin-top: 20px; background: rgba(255,255,255,0.1);
-            color: white; border: none; padding: 12px 30px; border-radius: 50px;
-            font-weight: 600; cursor: pointer;
+            background: rgba(255,255,255,0.1); color: white; border: none;
+            padding: 12px 35px; border-radius: 50px; font-weight: 600; cursor: pointer;
+            transition: background 0.3s;
         }
-        .hidden { display: none; }
+        .btn-close:hover { background: rgba(255,255,255,0.2); }
 
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="header-title"><h1>VALIDATOR PRO</h1></div>
+    <div class="header-title">
+        <h1>VALIDATOR PRO</h1>
+        <p>Luhn Algorithm & Bank ID</p>
+    </div>
 
     <div class="virtual-card">
         <div class="card-top">
             <div class="chip"></div>
-            <img src="" class="card-brand-logo hidden" id="cardBrandLogo">
-            <span id="cardBrandText" style="font-weight: 600; font-size: 1.2rem;"></span>
+            <img src="" alt="Card Logo" class="card-brand-logo" id="cardBrandLogo">
         </div>
+        
         <div class="card-number-display" id="displayNumber">#### #### #### ####</div>
+        
         <div class="card-details">
-            <div class="detail-group"><label>TITULAR</label><div id="displayName">CARGANDO...</div></div>
-            <div class="detail-group"><label>VENCE</label><div id="displayExpiry">MM/AA</div></div>
+            <div class="detail-group">
+                <label>TITULAR</label>
+                <div id="displayName">CARGANDO...</div>
+            </div>
+            <div class="detail-group">
+                <label>VENCE</label>
+                <div id="displayExpiry">MM/AA</div>
+            </div>
         </div>
     </div>
 
     <div class="input-terminal">
-        <div class="terminal-header"><div class="terminal-dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div></div>
-        
         <form id="paymentForm" autocomplete="on" onsubmit="return false;">
             <div class="input-group">
                 <label class="input-label">NÚMERO DE TARJETA</label>
-                <input type="text" id="inputNumber" class="input-field" placeholder="0000 0000 0000 0000" maxlength="19" name="cc-number" autocomplete="cc-number" inputmode="numeric">
+                <input type="text" id="inputNumber" 
+                       class="input-field" 
+                       placeholder="0000 0000 0000 0000" 
+                       maxlength="19" 
+                       name="cc-number" 
+                       autocomplete="cc-number" 
+                       inputmode="numeric">
             </div>
 
             <div class="input-group">
-                <label class="input-label">FECHA DE VENCIMIENTO</label>
-                <input type="text" id="inputExpiry" class="input-field" placeholder="MM/AA" maxlength="5" name="cc-exp" autocomplete="cc-exp" inputmode="numeric">
+                <label class="input-label">FECHA (MM/AA)</label>
+                <input type="text" id="inputExpiry" 
+                       class="input-field" 
+                       placeholder="MM/AA" 
+                       maxlength="5" 
+                       name="cc-exp" 
+                       autocomplete="cc-exp" 
+                       inputmode="numeric">
             </div>
 
-            <button class="btn-validate" id="btnValidate">VALIDAR AHORA</button>
+            <button class="btn-validate" id="btnValidate">VALIDAR TARJETA</button>
         </form>
     </div>
 </div>
@@ -215,46 +285,69 @@
 <div class="modal-overlay" id="resultModal">
     <div class="modal-content">
         <div class="status-icon" id="modalIcon"></div>
-        <h2 style="margin-bottom: 10px;" id="modalTitle"></h2>
-        <p style="color: #888; font-size: 0.9rem;" id="modalMsg"></p>
+        <h2 class="modal-title" id="modalTitle"></h2>
+        <p class="modal-msg" id="modalMsg"></p>
         <button class="btn-close" id="btnCloseModal">Cerrar</button>
     </div>
 </div>
 
 <script>
+    // --- VARIABLES ---
     const randomNames = ["DIEGO SANTOS", "MARIA GARCIA", "JUAN PEREZ", "ANA LOPEZ", "CARLOS RUIZ", "ALEX MORGAN", "DAVID SMITH"];
+    
+    // URLs de Logos en Alta Definición (SVG)
     const brandLogos = {
         visa: 'https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg',
         mastercard: 'https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg',
         amex: 'https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo.svg',
-        discover: 'https://upload.wikimedia.org/wikipedia/commons/5/57/Discover_Card_logo.svg'
+        discover: 'https://upload.wikimedia.org/wikipedia/commons/5/57/Discover_Card_logo.svg',
+        diners: 'https://upload.wikimedia.org/wikipedia/commons/a/a6/Diners_Club_Logo3.svg',
+        jcb: 'https://upload.wikimedia.org/wikipedia/commons/4/40/JCB_logo.svg',
+        maestro: 'https://upload.wikimedia.org/wikipedia/commons/f/fd/Maestro_logo.svg'
     };
 
     const inputNumber = document.getElementById('inputNumber');
     const inputExpiry = document.getElementById('inputExpiry');
     const resultModal = document.getElementById('resultModal');
+    const logoImg = document.getElementById('cardBrandLogo');
 
-    window.onload = () => {
+    // 1. CARGA INICIAL
+    window.onload = function() {
         document.getElementById('displayName').textContent = randomNames[Math.floor(Math.random() * randomNames.length)];
     };
 
-    function updateCardUI(numberRaw) {
-        let brand = null;
-        if (/^4/.test(numberRaw)) brand = 'visa';
-        else if (/^5[1-5]/.test(numberRaw)) brand = 'mastercard';
-        else if (/^3[47]/.test(numberRaw)) brand = 'amex';
-        else if (/^6(?:011|5)/.test(numberRaw)) brand = 'discover';
+    // 2. DETECTOR DE MARCA (LOGOS)
+    function getCardBrand(number) {
+        // Regex para detectar marcas
+        if (/^4/.test(number)) return 'visa';
+        if (/^5[1-5]/.test(number)) return 'mastercard';
+        if (/^3[47]/.test(number)) return 'amex';
+        if (/^6(?:011|5)/.test(number)) return 'discover';
+        if (/^3(?:0[0-5]|[68])/.test(number)) return 'diners';
+        if (/^(?:2131|1800|35\d{3})/.test(number)) return 'jcb';
+        if (/^(5018|5020|5038|6304|6759|6761|6763)/.test(number)) return 'maestro';
+        return null;
+    }
 
-        const logo = document.getElementById('cardBrandLogo');
-        const text = document.getElementById('cardBrandText');
+    // 3. ACTUALIZAR INTERFAZ
+    function updateCardUI(numberRaw) {
+        const brand = getCardBrand(numberRaw);
         
-        if (brand) { logo.src = brandLogos[brand]; logo.classList.remove('hidden'); text.textContent = ''; }
-        else { logo.classList.add('hidden'); text.textContent = ''; }
+        // Manejo del Logo
+        if (brand && brandLogos[brand]) {
+            logoImg.src = brandLogos[brand];
+            logoImg.classList.add('visible'); // Activa la animación
+        } else {
+            logoImg.classList.remove('visible'); // Oculta suavemente si no hay match
+            // Pequeño timeout para limpiar el src después de la animación
+            setTimeout(() => { if(!logoImg.classList.contains('visible')) logoImg.src = ''; }, 300);
+        }
         
         document.getElementById('displayNumber').textContent = inputNumber.value || '#### #### #### ####';
         document.getElementById('displayExpiry').textContent = inputExpiry.value || 'MM/AA';
     }
 
+    // 4. LÓGICA LUHN
     function luhnCheck(val) {
         let sum = 0, shouldDouble = false;
         for (let i = val.length - 1; i >= 0; i--) {
@@ -265,6 +358,7 @@
         return (sum % 10) === 0;
     }
 
+    // 5. LÓGICA FECHA
     function validateExpiry(dateString) {
         if (!/^\d{2}\/\d{2}$/.test(dateString)) return false;
         const [month, yearStr] = dateString.split('/').map(Number);
@@ -275,6 +369,7 @@
         return true;
     }
 
+    // --- EVENT LISTENERS ---
     inputNumber.addEventListener('input', (e) => {
         let val = e.target.value.replace(/\D/g, '');
         e.target.value = val.replace(/(\d{4})(?=\d)/g, '$1 ').trim();
@@ -296,23 +391,29 @@
         const modalMsg = document.getElementById('modalMsg');
 
         let isValid = true;
-        let msg = "Tarjeta verificada correctamente.";
+        let msg = "Tarjeta verificada y segura.";
 
         if (numRaw.length < 13 || !luhnCheck(numRaw)) {
-            isValid = false; msg = "El número de tarjeta es incorrecto (Fallo Luhn).";
+            isValid = false; msg = "El número de tarjeta no es válido (Error de Algoritmo).";
         } else if (!validateExpiry(expRaw)) {
-            isValid = false; msg = "La fecha de vencimiento no es válida.";
+            isValid = false; msg = "La tarjeta ha expirado o la fecha es incorrecta.";
         }
 
         modalIcon.textContent = isValid ? '✅' : '❌';
         modalTitle.textContent = isValid ? 'VÁLIDA' : 'INVÁLIDA';
         modalTitle.style.color = isValid ? '#00ff88' : '#ff0055';
         modalMsg.textContent = msg;
+        
         resultModal.classList.add('active');
     });
 
-    document.getElementById('btnCloseModal').addEventListener('click', () => resultModal.classList.remove('active'));
-    resultModal.addEventListener('click', (e) => { if(e.target === resultModal) resultModal.classList.remove('active'); });
+    document.getElementById('btnCloseModal').addEventListener('click', () => {
+        resultModal.classList.remove('active');
+    });
+    resultModal.addEventListener('click', (e) => {
+        if(e.target === resultModal) resultModal.classList.remove('active');
+    });
+
 </script>
 </body>
 </html>
