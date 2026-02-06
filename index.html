@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Validator Pro | High Contrast Fixed</title>
+    <title>Validator Pro | Silver Perfect</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,20 +11,18 @@
     
     <style>
         :root {
-            /* FONDOS MÁS OSCUROS PARA ALTO CONTRASTE */
             --bg-color: #000000;
-            --text-light: #ffffff; /* Texto blanco puro */
+            --text-light: #ffffff;
             --text-muted: #aaaaaa;
             
-            /* PALETA SILVER MÁS BRILLANTE */
+            /* PALETA SILVER */
             --silver-color: #ffffff;
             --silver-shine: #ffffff;
             --silver-dark: #cccccc;
-            /* Gradiente título más luminoso */
             --silver-gradient: linear-gradient(135deg, #e0e0e0, #ffffff, #e0e0e0);
 
-            /* FONDOS BANCOS PROFUNDOS */
-            --bg-default: linear-gradient(145deg, #1a1a1a, #000000);
+            /* FONDOS BANCOS */
+            --bg-default: linear-gradient(145deg, #1a1a1a, #050505);
             --bg-banorte: linear-gradient(145deg, #4a0000, #1a0000);
             --bg-bbva: linear-gradient(145deg, #001f3f, #000810);
             --bg-santander: linear-gradient(145deg, #6a0000, #2a0000);
@@ -39,10 +37,9 @@
         html, body {
             height: 100%;
             width: 100%;
-            overflow: hidden; /* Cero Scroll */
+            overflow: hidden; 
             background-color: var(--bg-color);
             font-family: 'Montserrat', sans-serif;
-            /* Fondo más oscuro y profundo */
             background-image: radial-gradient(circle at 50% 0%, #1a1a1a 0%, #000000 95%);
             display: flex;
             align-items: center;
@@ -67,12 +64,10 @@
             font-family: 'Cinzel Decorative', serif;
             font-size: 2.3rem;
             font-weight: 700;
-            /* Gradiente más brillante */
             background: var(--silver-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin: 0;
-            /* Sombra/Resplandor blanco más intenso */
             text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
             display: inline-block;
             position: relative;
@@ -121,21 +116,23 @@
         }
         .bank-logo.visible { opacity: 1; transform: translateY(0); }
 
-        /* --- ARREGLO DEFINITIVO DEL CENTRADO --- */
+        /* --- NÚMERO CORREGIDO PARA QUE SEA LINEAL --- */
         .card-number {
             font-family: 'Courier Prime', monospace;
-            font-size: clamp(1.4rem, 6vw, 1.8rem);
+            /* Tamaño ajustado para asegurar una línea */
+            font-size: clamp(1.1rem, 5vw, 1.6rem); 
             color: #ffffff;
             text-shadow: 0 2px 5px rgba(0,0,0,1);
             
-            /* Método clásico de centrado */
+            /* FUERZA UNA SOLA LÍNEA */
+            white-space: nowrap; 
             display: block;
             text-align: center;
             width: 100%;
             
-            /* LA CLAVE: Compensar el letter-spacing con indent */
-            letter-spacing: 3px;
-            text-indent: 3px; 
+            /* Espaciado ajustado */
+            letter-spacing: 2px;
+            text-indent: 2px; 
             
             margin-top: 5px; z-index: 2; font-weight: 700;
             min-height: 28px;
@@ -156,14 +153,16 @@
             font-family: 'Courier Prime', monospace; font-size: 0.95rem; color: #fff; letter-spacing: 1px; font-weight: 700; padding-bottom: 2px;
         }
 
+        /* --- LOGO VISA REDUCIDO --- */
         .network-logo {
-            height: 38px; width: auto; object-fit: contain;
+            height: 25px; /* Reducido de 38px a 25px */
+            width: auto; object-fit: contain;
             opacity: 0; transform: translateX(10px); transition: all 0.5s ease;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
         }
         .network-logo.visible { opacity: 1; transform: translateX(0); }
 
-        /* FORMULARIO ALTO CONTRASTE */
+        /* FORMULARIO */
         .form-container {
             width: 100%;
             background: rgba(20, 20, 20, 0.8);
