@@ -3,23 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Validator Pro | Gold Edition</title>
+    <title>Validator Pro | Gold Minimalist</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --bg-color: #050505;
-            --card-bg-dark: #121212;
             --text-main: #ffffff;
             --text-muted: #888888;
             /* Gradiente Dorado de Lujo */
             --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
             --gold-text: #d4af37;
             
-            /* Fondos de Bancos (Oscuros y elegantes) */
-            --bg-default: linear-gradient(135deg, #1e1e1e 0%, #000000 100%);
-            --bg-banorte: linear-gradient(135deg, #4a0000 0%, #1a0000 100%); /* Rojo oscuro */
-            --bg-bbva: linear-gradient(135deg, #001f3f 0%, #000a14 100%);   /* Azul muy oscuro */
+            /* Fondos de Bancos */
+            --bg-default: linear-gradient(135deg, #1e1e1e 0%, #080808 100%);
+            --bg-banorte: linear-gradient(135deg, #4a0000 0%, #1a0000 100%);
+            --bg-bbva: linear-gradient(135deg, #001f3f 0%, #000a14 100%);
             --bg-santander: linear-gradient(135deg, #590000 0%, #2b0000 100%);
             --bg-chase: linear-gradient(135deg, #003366 0%, #001a33 100%);
             --bg-bofa: linear-gradient(135deg, #660000 0%, #330000 100%);
@@ -36,58 +35,61 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            /* Fondo Radial Sutil */
-            background-image: radial-gradient(circle at 50% 0%, #1a1a1a 0%, #050505 80%);
             padding: 20px;
+            /* FONDO CON LÍNEAS DORADAS DESVANECIDAS Y PROFUNDIDAD */
+            background-image: 
+                radial-gradient(circle at 50% 0%, #222222 0%, #050505 80%), /* Luz superior */
+                repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(212, 175, 55, 0.02) 40px, rgba(212, 175, 55, 0.02) 42px); /* Líneas sutiles */
+            background-attachment: fixed;
         }
 
         .container {
             width: 100%;
-            max-width: 480px;
+            max-width: 450px; /* Un poco más compacto para ser más minimalista */
             perspective: 1000px;
+            z-index: 1;
         }
 
         /* --- Header --- */
-        header { text-align: center; margin-bottom: 30px; }
+        header { text-align: center; margin-bottom: 35px; }
 
         h1 {
             font-family: 'Playfair Display', serif;
             font-size: 2.2rem;
             letter-spacing: 1px;
-            /* Texto Dorado Metálico */
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 5px;
-            text-shadow: 0 2px 10px rgba(191, 149, 63, 0.2);
+            text-shadow: 0 2px 15px rgba(191, 149, 63, 0.25);
         }
 
         p.subtitle {
-            color: var(--text-muted);
-            font-size: 0.75rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
+            color: var(--text-muted); font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; font-weight: 300;
         }
 
-        /* --- Tarjeta Visual (Luxury) --- */
+        /* --- Tarjeta Visual (Minimalist & Deep) --- */
         .credit-card {
             background: var(--bg-default);
-            border-radius: 18px;
+            border-radius: 20px;
             padding: 25px;
-            aspect-ratio: 1.58/1; /* Ratio estándar */
+            aspect-ratio: 1.58/1;
             width: 100%;
             position: relative;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6), 
-                        0 0 0 1px rgba(255, 215, 0, 0.15) inset; /* Borde dorado fino */
+            /* NUEVO EFECTO DE PROFUNDIDAD FLOTANTE */
+            box-shadow: 
+                0 25px 50px -12px rgba(0, 0, 0, 0.8), /* Sombra profunda */
+                0 10px 20px -5px rgba(0, 0, 0, 0.5),  /* Sombra cercana */
+                0 0 0 1px rgba(255, 215, 0, 0.1) inset; /* Borde dorado sutil */
             margin-bottom: 35px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             overflow: hidden;
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
         }
         
-        /* Clases para cambiar fondo según banco */
+        /* Clases de Banco */
         .credit-card.bank-banorte { background: var(--bg-banorte); }
         .credit-card.bank-bbva { background: var(--bg-bbva); }
         .credit-card.bank-santander { background: var(--bg-santander); }
@@ -95,170 +97,132 @@
         .credit-card.bank-bofa { background: var(--bg-bofa); }
         .credit-card.bank-citi { background: var(--bg-citi); }
 
-        /* Textura de ruido */
+        /* Textura de ruido muy sutil */
         .credit-card::before {
             content: ''; position: absolute; inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
             pointer-events: none; mix-blend-mode: overlay;
         }
         
-        /* Brillo dorado en hover */
         .credit-card:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.8), 
-                        0 0 0 1px rgba(255, 215, 0, 0.3) inset;
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 
+                0 35px 70px -15px rgba(0, 0, 0, 0.9),
+                0 0 0 1px rgba(255, 215, 0, 0.25) inset;
         }
 
-        /* Top: Banco y Chip */
+        /* Top: Solo Banco (Sin Chip) */
         .card-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            z-index: 2;
-            height: 40px;
+            display: flex; justify-content: space-between; align-items: flex-start; height: 30px;
         }
 
         .bank-logo {
-            height: 24px;
-            width: auto;
-            object-fit: contain;
-            filter: brightness(0) invert(1) drop-shadow(0 1px 2px rgba(0,0,0,0.5)); /* Blanco Puro */
-            opacity: 0; transform: translateY(-10px);
-            transition: all 0.4s ease;
+            height: 22px; width: auto; object-fit: contain;
+            filter: brightness(0) invert(1) drop-shadow(0 1px 2px rgba(0,0,0,0.3));
+            opacity: 0; transform: translateY(-5px); transition: all 0.5s ease;
         }
-        .bank-logo.visible { opacity: 0.9; transform: translateY(0); }
-
-        .chip {
-            width: 45px; height: 32px;
-            background: linear-gradient(135deg, #e0cba8 0%, #d4af37 50%, #a3842c 100%);
-            border-radius: 6px;
-            position: relative;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
-        }
-        .chip::after {
-            content: ''; position: absolute; inset: 0;
-            border: 1px solid rgba(0,0,0,0.2); border-radius: 6px;
-            background-image: repeating-linear-gradient(transparent, transparent 8px, rgba(0,0,0,0.1) 8px, rgba(0,0,0,0.1) 9px);
-        }
+        .bank-logo.visible { opacity: 0.85; transform: translateY(0); }
 
         /* Middle: Número */
         .card-number {
             font-family: 'Courier Prime', monospace;
-            font-size: clamp(1.2rem, 5vw, 1.5rem);
-            letter-spacing: 3px;
-            color: #fff; /* Blanco o Dorado suave */
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent; 
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-            text-align: center;
-            margin-top: 15px;
-            z-index: 2;
-            white-space: nowrap;
-            font-weight: 700;
+            font-size: clamp(1.3rem, 5vw, 1.6rem);
+            letter-spacing: 3px; color: #fff;
+            background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
+            text-shadow: 0 4px 10px rgba(0,0,0,0.6);
+            text-align: center; margin-top: 10px; z-index: 2; white-space: nowrap; font-weight: 700;
         }
 
         /* Bottom: Detalles y Logo Red */
-        .card-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            z-index: 2;
-        }
-
-        .card-details {
-            display: flex;
-            gap: 20px;
-        }
-        
+        .card-bottom { display: flex; justify-content: space-between; align-items: flex-end; z-index: 2; }
+        .card-details { display: flex; gap: 25px; }
         .detail-box label {
-            display: block; font-size: 0.55rem; color: rgba(255,255,255,0.6);
-            text-transform: uppercase; margin-bottom: 2px; letter-spacing: 1px;
+            display: block; font-size: 0.5rem; color: rgba(255,255,255,0.5);
+            text-transform: uppercase; margin-bottom: 4px; letter-spacing: 2px;
         }
         .detail-box div {
-            font-family: 'Courier Prime', monospace; font-size: 0.85rem; color: #fff;
-            text-transform: uppercase; letter-spacing: 1px;
+            font-family: 'Montserrat', sans-serif; font-size: 0.8rem; color: #fff;
+            text-transform: uppercase; letter-spacing: 1px; font-weight: 500;
         }
 
         .network-logo {
-            height: 35px; width: auto; object-fit: contain;
-            opacity: 0.8; 
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
-            transition: all 0.3s;
+            height: 28px; /* HACIENDO EL LOGO MÁS PEQUEÑO EN MÓVIL */
+            width: auto; object-fit: contain; opacity: 0.8; 
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4)); transition: all 0.5s;
         }
 
-        /* --- Formulario Minimalista --- */
+        /* --- Formulario Flotante --- */
         .form-container {
-            background: rgba(20, 20, 20, 0.6);
-            padding: 30px;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 215, 0, 0.08); /* Borde dorado muy sutil */
-            backdrop-filter: blur(15px);
+            background: rgba(25, 25, 25, 0.7); /* Un poco más oscuro y transparente */
+            padding: 35px 30px;
+            border-radius: 20px;
+            /* EFECTO DE PROFUNDIDAD FLOTANTE EN EL FORMULARIO */
+            box-shadow: 
+                0 20px 40px -10px rgba(0,0,0,0.6),
+                0 0 0 1px rgba(255, 215, 0, 0.05) inset;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.03);
         }
 
-        .input-group { margin-bottom: 25px; }
+        .input-group { margin-bottom: 30px; }
         
         .input-label {
             display: block; color: var(--gold-text);
-            font-size: 0.7rem; margin-bottom: 8px;
-            letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600;
+            font-size: 0.65rem; margin-bottom: 10px;
+            letter-spacing: 2px; text-transform: uppercase; font-weight: 600; opacity: 0.9;
         }
 
         input {
             width: 100%; background: transparent; border: none;
-            border-bottom: 1px solid #333; padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 12px 0;
             color: #fff; font-family: 'Montserrat', sans-serif;
-            font-size: 1.1rem; letter-spacing: 1px;
-            transition: all 0.3s ease;
+            font-size: 1.1rem; letter-spacing: 1.5px; transition: all 0.3s ease;
         }
         input:focus {
             outline: none; border-bottom: 1px solid var(--gold-text);
-            box-shadow: 0 10px 20px -10px rgba(212, 175, 55, 0.1);
+            background: linear-gradient(to bottom, transparent, rgba(212, 175, 55, 0.05));
         }
-        input::placeholder { color: #333; }
+        input::placeholder { color: rgba(255, 255, 255, 0.2); letter-spacing: 1px; }
 
-        .row { display: flex; gap: 20px; }
-        .row .input-group { flex: 1; }
-
-        /* --- Botón Gold --- */
+        /* --- Botón Gold Minimal --- */
         .btn-add {
-            width: 100%; padding: 16px;
+            width: 100%; padding: 18px;
             background: var(--gold-gradient);
-            border: none; border-radius: 8px;
-            color: #0f0f0f; font-weight: 700; font-size: 0.9rem;
-            letter-spacing: 2px; text-transform: uppercase;
-            cursor: pointer; transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.15);
+            border: none; border-radius: 12px;
+            color: #0a0a0a; font-weight: 700; font-size: 0.9rem;
+            letter-spacing: 3px; text-transform: uppercase;
+            cursor: pointer; transition: all 0.4s ease;
+            box-shadow: 0 10px 30px -5px rgba(212, 175, 55, 0.3);
             margin-top: 10px;
         }
         .btn-add:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
-            filter: brightness(1.1);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px -5px rgba(212, 175, 55, 0.5);
         }
         .btn-add:active { transform: translateY(0); }
 
         /* Modal Resultado */
         .modal-overlay {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.9);
+            position: fixed; inset: 0; background: rgba(0,0,0,0.92); backdrop-filter: blur(5px);
             display: flex; justify-content: center; align-items: center;
-            opacity: 0; pointer-events: none; transition: 0.3s; z-index: 999;
+            opacity: 0; pointer-events: none; transition: 0.4s; z-index: 999;
         }
         .modal-overlay.active { opacity: 1; pointer-events: all; }
         .modal-content {
-            background: #111; border: 1px solid var(--gold-text);
-            padding: 40px; border-radius: 12px; text-align: center;
-            box-shadow: 0 0 50px rgba(212, 175, 55, 0.2);
-            transform: scale(0.9); transition: 0.4s;
+            background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 50px 40px; border-radius: 20px; text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+            transform: scale(0.95) translateY(20px); transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
         }
-        .modal-overlay.active .modal-content { transform: scale(1); }
-        .status-icon { font-size: 3rem; margin-bottom: 15px; display: block; }
+        .modal-overlay.active .modal-content { transform: scale(1) translateY(0); }
+        .status-icon { font-size: 3.5rem; margin-bottom: 20px; display: block; }
         .btn-close {
-            background: transparent; border: 1px solid #444; color: #888;
-            padding: 8px 25px; border-radius: 50px; margin-top: 20px; cursor: pointer;
-            transition: 0.3s;
+            background: transparent; border: 1px solid rgba(255, 255, 255, 0.2); color: #aaa;
+            padding: 10px 30px; border-radius: 50px; margin-top: 30px; cursor: pointer;
+            transition: 0.3s; font-size: 0.8rem; letter-spacing: 1px;
         }
-        .btn-close:hover { border-color: #fff; color: #fff; }
+        .btn-close:hover { border-color: var(--gold-text); color: var(--gold-text); }
 
     </style>
 </head>
@@ -267,14 +231,13 @@
     <div class="container">
         <header>
             <h1>VALIDATOR PRO</h1>
-            <p class="subtitle">Luxury Edition | Secure System</p>
+            <p class="subtitle">Minimalist Gold Edition</p>
         </header>
 
         <div class="credit-card" id="cardVisual">
             <div class="card-top">
                 <img src="" alt="Bank" class="bank-logo" id="bankLogo">
-                <div class="chip"></div>
-            </div>
+                </div>
             
             <div class="card-number" id="displayNumber">#### #### #### ####</div>
             
@@ -282,7 +245,8 @@
                 <div class="card-details">
                     <div class="detail-box">
                         <label>TITULAR</label>
-                        <div>USUARIO</div> </div>
+                        <div>USUARIO</div>
+                    </div>
                     <div class="detail-box">
                         <label>VENCE</label>
                         <div id="displayExpiry">MM/AA</div>
@@ -298,15 +262,9 @@
                 <input type="text" id="inputNumber" placeholder="0000 0000 0000 0000" maxlength="19" inputmode="numeric" autocomplete="cc-number">
             </div>
 
-            <div class="row">
-                <div class="input-group">
-                    <label class="input-label">Vencimiento</label>
-                    <input type="text" id="inputExpiry" placeholder="MM/AA" maxlength="5" inputmode="numeric" autocomplete="cc-exp">
-                </div>
-                <div class="input-group">
-                    <label class="input-label">CVC</label>
-                    <input type="password" id="inputCVC" placeholder="•••" maxlength="4" inputmode="numeric">
-                </div>
+            <div class="input-group">
+                <label class="input-label">Vencimiento (MM/AA)</label>
+                <input type="text" id="inputExpiry" placeholder="MM/AA" maxlength="5" inputmode="numeric" autocomplete="cc-exp">
             </div>
 
             <button class="btn-add" id="btnValidate">Agregar Tarjeta</button>
@@ -316,8 +274,8 @@
     <div class="modal-overlay" id="resultModal">
         <div class="modal-content">
             <div class="status-icon" id="modalIcon"></div>
-            <h3 style="color: #fff; font-family: 'Playfair Display'; margin-bottom: 10px;" id="modalTitle"></h3>
-            <p style="color: #888; font-size: 0.9rem;" id="modalMsg"></p>
+            <h3 style="color: #fff; font-family: 'Playfair Display'; margin-bottom: 15px; letter-spacing: 1px;" id="modalTitle"></h3>
+            <p style="color: #999; font-size: 0.9rem; font-weight: 300;" id="modalMsg"></p>
             <button class="btn-close" id="btnClose">Cerrar</button>
         </div>
     </div>
@@ -332,7 +290,6 @@
         };
 
         const bankLogos = {
-            // Logos blancos / transparentes ideales para fondos oscuros
             banorte: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Banorte_logo.svg/1024px-Banorte_logo.svg.png', 
             bbva: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/BBVA_2019.svg/1024px-BBVA_2019.svg.png',
             santander: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Banco_Santander_Logotipo.svg/1024px-Banco_Santander_Logotipo.svg.png',
@@ -341,23 +298,19 @@
             citi: 'https://upload.wikimedia.org/wikipedia/commons/1/1b/Citi.svg'
         };
 
-        // --- BASE DE DATOS DE BINs (MX + USA) ---
         const binDatabase = {
-            // MX
             '491566': { bank: 'banorte', network: 'visa' },
             '525678': { bank: 'banorte', network: 'mastercard' },
             '415231': { bank: 'bbva', network: 'visa' },
             '557907': { bank: 'bbva', network: 'mastercard' },
             '491658': { bank: 'santander', network: 'visa' },
-            // USA
-            '414720': { bank: 'chase', network: 'visa' },       // Chase Visa Signature
-            '426684': { bank: 'chase', network: 'visa' },       // Chase Freedom
-            '482859': { bank: 'bofa', network: 'visa' },        // Bank of America
-            '549099': { bank: 'citi', network: 'mastercard' },  // Citi MC
-            '414709': { bank: 'citi', network: 'visa' }         // Citi Visa
+            '414720': { bank: 'chase', network: 'visa' },
+            '426684': { bank: 'chase', network: 'visa' },
+            '482859': { bank: 'bofa', network: 'visa' },
+            '549099': { bank: 'citi', network: 'mastercard' },
+            '414709': { bank: 'citi', network: 'visa' }
         };
 
-        // DOM Elements
         const inputNumber = document.getElementById('inputNumber');
         const inputExpiry = document.getElementById('inputExpiry');
         const cardVisual = document.getElementById('cardVisual');
@@ -365,45 +318,36 @@
         const networkLogoImg = document.getElementById('networkLogo');
         const resultModal = document.getElementById('resultModal');
 
-        // --- FUNCIONES UI ---
         function updateCardUI(numberRaw) {
             const bin = numberRaw.substring(0, 6);
             const cardData = binDatabase[bin];
 
-            // Reset Clases
             cardVisual.className = 'credit-card'; 
             bankLogoImg.classList.remove('visible');
-            networkLogoImg.src = ''; 
-            networkLogoImg.style.opacity = '0';
+            networkLogoImg.src = ''; networkLogoImg.style.opacity = '0';
 
             if (cardData) {
-                // Banco Detectado
                 cardVisual.classList.add(`bank-${cardData.bank}`);
                 bankLogoImg.src = bankLogos[cardData.bank];
                 bankLogoImg.classList.add('visible');
-                
                 networkLogoImg.src = networkLogos[cardData.network];
                 networkLogoImg.style.opacity = '1';
             } else {
-                // Fallback Red Genérica
                 let net = null;
                 if (/^4/.test(numberRaw)) net = 'visa';
                 else if (/^5[1-5]/.test(numberRaw)) net = 'mastercard';
                 else if (/^3[47]/.test(numberRaw)) net = 'amex';
-                
                 if(net) {
                     networkLogoImg.src = networkLogos[net];
                     networkLogoImg.style.opacity = '1';
                 }
             }
 
-            // Formato de número en pantalla (Agrupado)
             let formattedNum = numberRaw.match(/.{1,4}/g)?.join(' ') || numberRaw;
             document.getElementById('displayNumber').innerText = formattedNum || '#### #### #### ####';
             document.getElementById('displayExpiry').innerText = inputExpiry.value || 'MM/AA';
         }
 
-        // --- VALIDACIONES ---
         function luhnCheck(val) {
             let sum = 0, shouldDouble = false;
             for (let i = val.length - 1; i >= 0; i--) {
@@ -423,7 +367,6 @@
             return true;
         }
 
-        // --- EVENTOS ---
         inputNumber.addEventListener('input', (e) => {
             let val = e.target.value.replace(/\D/g, '');
             e.target.value = val.replace(/(\d{4})(?=\d)/g, '$1 ').trim();
@@ -446,29 +389,22 @@
 
             let isValid = true; 
             let title = "TARJETA ACEPTADA";
-            let msg = "Procesada correctamente.";
+            let msg = "La tarjeta ha sido validada y agregada correctamente.";
 
             if (numRaw.length < 13 || !luhnCheck(numRaw)) {
-                isValid = false; 
-                title = "TARJETA NO VÁLIDA";
-                msg = "El número no pasó la verificación de seguridad.";
+                isValid = false; title = "TARJETA NO VÁLIDA"; msg = "El número no pasó la verificación de seguridad.";
             } else if (!validateExpiry(expRaw)) {
-                isValid = false; 
-                title = "FECHA INVÁLIDA";
-                msg = "La tarjeta ha expirado o la fecha es incorrecta.";
+                isValid = false; title = "FECHA INVÁLIDA"; msg = "La tarjeta ha expirado o la fecha es incorrecta.";
             }
 
             modalIcon.innerText = isValid ? '✨' : '⚠️';
             modalTitle.innerText = title;
             modalTitle.style.color = isValid ? '#d4af37' : '#ef4444';
             modalMsg.innerText = msg;
-            
             resultModal.classList.add('active');
         });
 
-        document.getElementById('btnClose').addEventListener('click', () => {
-            resultModal.classList.remove('active');
-        });
+        document.getElementById('btnClose').addEventListener('click', () => resultModal.classList.remove('active'));
     </script>
 </body>
 </html>
