@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Validator Pro | Silver Fixed</title>
+    <title>Validator Pro | Silver Fixed Final</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,7 +21,7 @@
             --silver-dark: #a0a0a0;
             --silver-gradient: linear-gradient(135deg, #a0a0a0, #ffffff, #a0a0a0);
 
-            /* FONDOS BANCOS (Manteniendo oscuridad elegante) */
+            /* FONDOS BANCOS */
             --bg-default: linear-gradient(145deg, #121212, #000000);
             --bg-banorte: linear-gradient(145deg, #590000, #2b0000);
             --bg-bbva: linear-gradient(145deg, #002b4d, #001020);
@@ -33,7 +33,7 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* LAYOUT TIPO CYBERPUNK (Flex Column + 100vh Fix) */
+        /* LAYOUT FIJO */
         html, body {
             height: 100%;
             width: 100%;
@@ -41,8 +41,6 @@
             background-color: var(--bg-color);
             font-family: 'Montserrat', sans-serif;
             background-image: radial-gradient(circle at 50% 0%, #2a2a2a 0%, #000000 90%);
-            
-            /* Centrado absoluto */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -52,13 +50,11 @@
             width: 100%;
             max-width: 400px;
             height: 100%;
-            max-height: 850px; /* Evita que se estire demasiado en pantallas muy largas */
+            max-height: 850px;
             padding: 20px;
-            
-            /* AQUÍ ESTÁ LA MAGIA DE LA DISTRIBUCIÓN */
             display: flex;
             flex-direction: column;
-            justify-content: space-evenly; /* Reparte el espacio disponible automáticamente */
+            justify-content: space-evenly;
             align-items: center;
         }
 
@@ -69,7 +65,6 @@
             font-family: 'Cinzel Decorative', serif;
             font-size: 2.4rem;
             font-weight: 700;
-            /* Texto Plateado */
             background: var(--silver-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -96,7 +91,7 @@
             border-radius: 18px;
             padding: 25px;
             width: 100%;
-            aspect-ratio: 1.58/1; /* Mantiene la forma perfecta */
+            aspect-ratio: 1.58/1;
             position: relative;
             box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
             display: flex;
@@ -106,7 +101,6 @@
             transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
         }
         
-        /* Clases Bancos */
         .credit-card.bank-banorte { background: var(--bg-banorte); }
         .credit-card.bank-bbva { background: var(--bg-bbva); }
         .credit-card.bank-santander { background: var(--bg-santander); }
@@ -123,13 +117,19 @@
         }
         .bank-logo.visible { opacity: 1; transform: translateY(0); }
 
+        /* --- NÚMERO CORREGIDO --- */
         .card-number {
             font-family: 'Courier Prime', monospace;
             font-size: clamp(1.4rem, 6vw, 1.8rem);
-            letter-spacing: 3px; color: #ffffff;
+            letter-spacing: 3px; /* Espacio entre letras */
+            color: #ffffff;
             text-shadow: 0 2px 5px rgba(0,0,0,0.8);
-            text-align: center; width: 100%;
-            margin-right: -3px; margin-top: 5px; z-index: 2; white-space: nowrap; font-weight: 700;
+            text-align: center; 
+            width: 100%;
+            /* TRUCO PARA CENTRADO PERFECTO: */
+            text-indent: 3px; /* Compensa el letter-spacing al inicio */
+            
+            margin-top: 5px; z-index: 2; white-space: nowrap; font-weight: 700;
             min-height: 28px;
         }
 
@@ -183,15 +183,12 @@
         input:focus { outline: none; border-bottom: 1px solid var(--silver-shine); }
         input::placeholder { color: rgba(255, 255, 255, 0.2); }
 
-        /* BOTÓN SILVER (Blanco/Plata con letras negras) */
+        /* BOTÓN SILVER */
         .btn-add {
             width: 100%; padding: 16px;
-            /* Degradado blanco a gris muy claro */
             background: linear-gradient(145deg, #ffffff, #dcdcdc);
-            /* Borde Plateado */
             border: 2px solid var(--silver-dark);
             border-radius: 12px;
-            /* Texto Negro */
             color: #000000;
             font-weight: 700; font-size: 0.9rem;
             letter-spacing: 2px; text-transform: uppercase;
@@ -221,7 +218,7 @@
         .modal-overlay.active .modal-content { transform: scale(1); }
         .status-icon { font-size: 3.5rem; margin-bottom: 15px; display: block; }
         .btn-close {
-            background: transparent; border: 1px solid #666; color: #aaa;
+            background: transparent; border: 1px solid #555; color: #aaa;
             padding: 8px 25px; border-radius: 50px; margin-top: 20px; cursor: pointer; transition: 0.3s;
         }
         .btn-close:hover { border-color: var(--silver-shine); color: var(--silver-shine); }
