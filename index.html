@@ -3,85 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Validator Pro | Gold Minimalist</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <title>Validator Pro | Ultra Premium</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Montserrat:wght@300;400;500;600&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --bg-color: #050505;
-            --text-main: #ffffff;
+            --text-light: #e0e0e0;
             --text-muted: #888888;
-            /* Gradiente Dorado de Lujo */
-            --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-            --gold-text: #d4af37;
             
-            /* Fondos de Bancos */
-            --bg-default: linear-gradient(135deg, #1e1e1e 0%, #080808 100%);
-            --bg-banorte: linear-gradient(135deg, #4a0000 0%, #1a0000 100%);
-            --bg-bbva: linear-gradient(135deg, #001f3f 0%, #000a14 100%);
-            --bg-santander: linear-gradient(135deg, #590000 0%, #2b0000 100%);
-            --bg-chase: linear-gradient(135deg, #003366 0%, #001a33 100%);
-            --bg-bofa: linear-gradient(135deg, #660000 0%, #330000 100%);
-            --bg-citi: linear-gradient(135deg, #002b4d 0%, #001526 100%);
+            /* DORADO DE LUJO */
+            --gold-color: #d4af37;
+            --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+
+            /* FONDOS DE BANCOS */
+            --bg-default: linear-gradient(145deg, #151515, #000000);
+            --bg-banorte: linear-gradient(145deg, #590000, #2b0000); /* Rojo Banorte Oscuro */
+            --bg-bbva: linear-gradient(145deg, #002b4d, #001020);   /* Azul BBVA Profundo */
+            --bg-santander: linear-gradient(145deg, #7a0000, #330000);
+            --bg-chase: linear-gradient(145deg, #003366, #00152b);
+            --bg-bofa: linear-gradient(145deg, #660000, #2b0000);
+            --bg-citi: linear-gradient(145deg, #003b6f, #001a33);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             background-color: var(--bg-color);
-            color: var(--text-main);
+            color: var(--text-light);
             font-family: 'Montserrat', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
-            /* FONDO CON LÍNEAS DORADAS DESVANECIDAS Y PROFUNDIDAD */
-            background-image: 
-                radial-gradient(circle at 50% 0%, #222222 0%, #050505 80%), /* Luz superior */
-                repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(212, 175, 55, 0.02) 40px, rgba(212, 175, 55, 0.02) 42px); /* Líneas sutiles */
-            background-attachment: fixed;
+            padding: 25px;
+            background-image: radial-gradient(circle at 50% 0%, #1a1a1a 0%, #000000 85%);
         }
 
         .container {
             width: 100%;
-            max-width: 450px; /* Un poco más compacto para ser más minimalista */
-            perspective: 1000px;
+            max-width: 420px;
             z-index: 1;
         }
 
-        /* --- Header --- */
-        header { text-align: center; margin-bottom: 35px; }
+        /* HEADER ESTILO NOCTURA */
+        header { text-align: center; margin-bottom: 40px; }
 
         h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 2.6rem;
+            font-weight: 400;
             letter-spacing: 1px;
+            /* Texto Dorado */
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 5px;
-            text-shadow: 0 2px 15px rgba(191, 149, 63, 0.25);
+            margin-bottom: 8px;
+            text-shadow: 0 4px 15px rgba(191, 149, 63, 0.2);
         }
 
         p.subtitle {
-            color: var(--text-muted); font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; font-weight: 300;
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
         }
 
-        /* --- Tarjeta Visual (Minimalist & Deep) --- */
+        /* TARJETA VISUAL */
         .credit-card {
             background: var(--bg-default);
-            border-radius: 20px;
-            padding: 25px;
+            border-radius: 18px;
+            padding: 30px;
             aspect-ratio: 1.58/1;
             width: 100%;
             position: relative;
-            /* NUEVO EFECTO DE PROFUNDIDAD FLOTANTE */
-            box-shadow: 
-                0 25px 50px -12px rgba(0, 0, 0, 0.8), /* Sombra profunda */
-                0 10px 20px -5px rgba(0, 0, 0, 0.5),  /* Sombra cercana */
-                0 0 0 1px rgba(255, 215, 0, 0.1) inset; /* Borde dorado sutil */
-            margin-bottom: 35px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+            margin-bottom: 40px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -89,7 +89,7 @@
             transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
         }
         
-        /* Clases de Banco */
+        /* Clases Dinámicas de Bancos */
         .credit-card.bank-banorte { background: var(--bg-banorte); }
         .credit-card.bank-bbva { background: var(--bg-bbva); }
         .credit-card.bank-santander { background: var(--bg-santander); }
@@ -97,132 +97,119 @@
         .credit-card.bank-bofa { background: var(--bg-bofa); }
         .credit-card.bank-citi { background: var(--bg-citi); }
 
-        /* Textura de ruido muy sutil */
-        .credit-card::before {
-            content: ''; position: absolute; inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
-            pointer-events: none; mix-blend-mode: overlay;
-        }
-        
-        .credit-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 
-                0 35px 70px -15px rgba(0, 0, 0, 0.9),
-                0 0 0 1px rgba(255, 215, 0, 0.25) inset;
-        }
-
-        /* Top: Solo Banco (Sin Chip) */
+        /* Top: Logo Banco */
         .card-top {
-            display: flex; justify-content: space-between; align-items: flex-start; height: 30px;
+            height: 35px;
+            display: flex;
+            align-items: flex-start;
         }
 
         .bank-logo {
-            height: 22px; width: auto; object-fit: contain;
-            filter: brightness(0) invert(1) drop-shadow(0 1px 2px rgba(0,0,0,0.3));
-            opacity: 0; transform: translateY(-5px); transition: all 0.5s ease;
+            height: 28px; width: auto; object-fit: contain;
+            /* Filtro blanco puro para elegancia */
+            filter: brightness(0) invert(1) drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+            opacity: 0; transform: translateY(-10px); transition: all 0.5s ease;
         }
-        .bank-logo.visible { opacity: 0.85; transform: translateY(0); }
+        .bank-logo.visible { opacity: 1; transform: translateY(0); }
 
-        /* Middle: Número */
+        /* Middle: Número Centrado */
         .card-number {
             font-family: 'Courier Prime', monospace;
-            font-size: clamp(1.3rem, 5vw, 1.6rem);
-            letter-spacing: 3px; color: #fff;
-            background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
-            text-shadow: 0 4px 10px rgba(0,0,0,0.6);
-            text-align: center; margin-top: 10px; z-index: 2; white-space: nowrap; font-weight: 700;
+            font-size: clamp(1.4rem, 5vw, 1.8rem);
+            letter-spacing: 3px; 
+            color: #ffffff;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.8);
+            text-align: center; width: 100%;
+            margin-top: 10px; z-index: 2; white-space: nowrap; font-weight: 700;
         }
 
-        /* Bottom: Detalles y Logo Red */
+        /* Bottom: Detalles */
         .card-bottom { display: flex; justify-content: space-between; align-items: flex-end; z-index: 2; }
-        .card-details { display: flex; gap: 25px; }
+        .card-details { display: flex; gap: 40px; }
+        
         .detail-box label {
-            display: block; font-size: 0.5rem; color: rgba(255,255,255,0.5);
-            text-transform: uppercase; margin-bottom: 4px; letter-spacing: 2px;
+            display: block; font-size: 0.55rem; color: rgba(255,255,255,0.5);
+            text-transform: uppercase; margin-bottom: 6px; letter-spacing: 2px;
         }
         .detail-box div {
-            font-family: 'Montserrat', sans-serif; font-size: 0.8rem; color: #fff;
-            text-transform: uppercase; letter-spacing: 1px; font-weight: 500;
+            font-family: 'Montserrat', sans-serif; font-size: 0.9rem; color: #fff;
+            text-transform: uppercase; letter-spacing: 1.5px; font-weight: 500;
         }
 
-        .network-logo {
-            height: 28px; /* HACIENDO EL LOGO MÁS PEQUEÑO EN MÓVIL */
-            width: auto; object-fit: contain; opacity: 0.8; 
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4)); transition: all 0.5s;
-        }
-
-        /* --- Formulario Flotante --- */
+        /* FORMULARIO */
         .form-container {
-            background: rgba(25, 25, 25, 0.7); /* Un poco más oscuro y transparente */
+            background: rgba(20, 20, 20, 0.7);
             padding: 35px 30px;
             border-radius: 20px;
-            /* EFECTO DE PROFUNDIDAD FLOTANTE EN EL FORMULARIO */
-            box-shadow: 
-                0 20px 40px -10px rgba(0,0,0,0.6),
-                0 0 0 1px rgba(255, 215, 0, 0.05) inset;
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.03);
+            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
         }
 
-        .input-group { margin-bottom: 30px; }
+        .input-group { margin-bottom: 25px; }
         
         .input-label {
-            display: block; color: var(--gold-text);
-            font-size: 0.65rem; margin-bottom: 10px;
-            letter-spacing: 2px; text-transform: uppercase; font-weight: 600; opacity: 0.9;
+            display: block; 
+            color: #cccccc; /* Blanco suave */
+            font-size: 0.7rem; margin-bottom: 12px;
+            letter-spacing: 2px; text-transform: uppercase; font-weight: 600;
         }
 
         input {
             width: 100%; background: transparent; border: none;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15); padding: 12px 0;
             color: #fff; font-family: 'Montserrat', sans-serif;
-            font-size: 1.1rem; letter-spacing: 1.5px; transition: all 0.3s ease;
+            font-size: 1.1rem; letter-spacing: 2px; transition: all 0.3s ease;
         }
         input:focus {
-            outline: none; border-bottom: 1px solid var(--gold-text);
-            background: linear-gradient(to bottom, transparent, rgba(212, 175, 55, 0.05));
+            outline: none; border-bottom: 1px solid var(--gold-color);
         }
-        input::placeholder { color: rgba(255, 255, 255, 0.2); letter-spacing: 1px; }
+        input::placeholder { color: rgba(255, 255, 255, 0.2); }
 
-        /* --- Botón Gold Minimal --- */
+        /* BOTÓN INVERTIDO (Negro con letras doradas) */
         .btn-add {
             width: 100%; padding: 18px;
-            background: var(--gold-gradient);
-            border: none; border-radius: 12px;
-            color: #0a0a0a; font-weight: 700; font-size: 0.9rem;
+            background: #000000; /* Fondo Negro */
+            border: 1px solid var(--gold-color); /* Borde Dorado */
+            border-radius: 12px;
+            color: var(--gold-color); /* Texto Dorado */
+            font-weight: 700; font-size: 0.9rem;
             letter-spacing: 3px; text-transform: uppercase;
             cursor: pointer; transition: all 0.4s ease;
-            box-shadow: 0 10px 30px -5px rgba(212, 175, 55, 0.3);
-            margin-top: 10px;
+            margin-top: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
         }
+        
         .btn-add:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px -5px rgba(212, 175, 55, 0.5);
+            background: var(--gold-gradient); /* Fondo Dorado al pasar mouse */
+            color: #000000; /* Texto Negro */
+            border-color: transparent;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+            transform: translateY(-2px);
         }
         .btn-add:active { transform: translateY(0); }
 
-        /* Modal Resultado */
+        /* MODAL RESULTADO */
         .modal-overlay {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.92); backdrop-filter: blur(5px);
+            position: fixed; inset: 0; background: rgba(0,0,0,0.95); backdrop-filter: blur(8px);
             display: flex; justify-content: center; align-items: center;
             opacity: 0; pointer-events: none; transition: 0.4s; z-index: 999;
         }
         .modal-overlay.active { opacity: 1; pointer-events: all; }
         .modal-content {
-            background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
-            border: 1px solid rgba(212, 175, 55, 0.3);
+            background: #111; border: 1px solid rgba(212, 175, 55, 0.3);
             padding: 50px 40px; border-radius: 20px; text-align: center;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
-            transform: scale(0.95) translateY(20px); transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            box-shadow: 0 20px 70px rgba(0,0,0,0.9);
+            transform: scale(0.95); transition: 0.4s;
+            max-width: 350px; width: 90%;
         }
-        .modal-overlay.active .modal-content { transform: scale(1) translateY(0); }
-        .status-icon { font-size: 3.5rem; margin-bottom: 20px; display: block; }
+        .modal-overlay.active .modal-content { transform: scale(1); }
+        .status-icon { font-size: 4rem; margin-bottom: 20px; display: block; }
         .btn-close {
-            background: transparent; border: 1px solid rgba(255, 255, 255, 0.2); color: #aaa;
-            padding: 10px 30px; border-radius: 50px; margin-top: 30px; cursor: pointer;
-            transition: 0.3s; font-size: 0.8rem; letter-spacing: 1px;
+            background: transparent; border: 1px solid #444; color: #888;
+            padding: 10px 30px; border-radius: 50px; margin-top: 25px; cursor: pointer; transition: 0.3s;
         }
-        .btn-close:hover { border-color: var(--gold-text); color: var(--gold-text); }
+        .btn-close:hover { border-color: var(--gold-color); color: var(--gold-color); }
 
     </style>
 </head>
@@ -231,13 +218,13 @@
     <div class="container">
         <header>
             <h1>VALIDATOR PRO</h1>
-            <p class="subtitle">Minimalist Gold Edition</p>
+            <p class="subtitle">Luxury System</p>
         </header>
 
         <div class="credit-card" id="cardVisual">
             <div class="card-top">
-                <img src="" alt="Bank" class="bank-logo" id="bankLogo">
-                </div>
+                <img src="" alt="" class="bank-logo" id="bankLogo">
+            </div>
             
             <div class="card-number" id="displayNumber">#### #### #### ####</div>
             
@@ -252,8 +239,7 @@
                         <div id="displayExpiry">MM/AA</div>
                     </div>
                 </div>
-                <img src="" alt="Network" class="network-logo" id="networkLogo">
-            </div>
+                </div>
         </div>
 
         <div class="form-container">
@@ -274,21 +260,14 @@
     <div class="modal-overlay" id="resultModal">
         <div class="modal-content">
             <div class="status-icon" id="modalIcon"></div>
-            <h3 style="color: #fff; font-family: 'Playfair Display'; margin-bottom: 15px; letter-spacing: 1px;" id="modalTitle"></h3>
-            <p style="color: #999; font-size: 0.9rem; font-weight: 300;" id="modalMsg"></p>
+            <h3 style="color: var(--gold-color); font-family: 'Cinzel Decorative'; margin-bottom: 15px;" id="modalTitle"></h3>
+            <p style="color: #aaa; font-size: 0.9rem;" id="modalMsg"></p>
             <button class="btn-close" id="btnClose">Cerrar</button>
         </div>
     </div>
 
     <script>
-        // --- LOGOS & DATOS ---
-        const networkLogos = {
-            visa: 'https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg',
-            mastercard: 'https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg',
-            amex: 'https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo.svg',
-            discover: 'https://upload.wikimedia.org/wikipedia/commons/5/57/Discover_Card_logo.svg'
-        };
-
+        // --- LOGOS DE BANCOS ---
         const bankLogos = {
             banorte: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Banorte_logo.svg/1024px-Banorte_logo.svg.png', 
             bbva: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/BBVA_2019.svg/1024px-BBVA_2019.svg.png',
@@ -298,56 +277,50 @@
             citi: 'https://upload.wikimedia.org/wikipedia/commons/1/1b/Citi.svg'
         };
 
+        // --- BASE DE DATOS DE BINs ---
+        // Aquí agregamos los números para detectar el banco
         const binDatabase = {
-            '491566': { bank: 'banorte', network: 'visa' },
-            '525678': { bank: 'banorte', network: 'mastercard' },
-            '415231': { bank: 'bbva', network: 'visa' },
-            '557907': { bank: 'bbva', network: 'mastercard' },
-            '491658': { bank: 'santander', network: 'visa' },
-            '414720': { bank: 'chase', network: 'visa' },
-            '426684': { bank: 'chase', network: 'visa' },
-            '482859': { bank: 'bofa', network: 'visa' },
-            '549099': { bank: 'citi', network: 'mastercard' },
-            '414709': { bank: 'citi', network: 'visa' }
+            '491566': 'banorte', '525678': 'banorte', // Banorte
+            '415231': 'bbva',    '557907': 'bbva',    // BBVA
+            '491658': 'santander',                    // Santander
+            '414720': 'chase',   '426684': 'chase',   // Chase
+            '482859': 'bofa',                         // Bank of America
+            '549099': 'citi',    '414709': 'citi'     // Citi
         };
 
         const inputNumber = document.getElementById('inputNumber');
         const inputExpiry = document.getElementById('inputExpiry');
         const cardVisual = document.getElementById('cardVisual');
         const bankLogoImg = document.getElementById('bankLogo');
-        const networkLogoImg = document.getElementById('networkLogo');
         const resultModal = document.getElementById('resultModal');
 
+        // FUNCIÓN PRINCIPAL DE UI
         function updateCardUI(numberRaw) {
             const bin = numberRaw.substring(0, 6);
-            const cardData = binDatabase[bin];
+            const detectedBank = binDatabase[bin];
 
+            // 1. Limpiar estilos anteriores
             cardVisual.className = 'credit-card'; 
             bankLogoImg.classList.remove('visible');
-            networkLogoImg.src = ''; networkLogoImg.style.opacity = '0';
+            // Quitamos el src para evitar imagen rota
+            setTimeout(() => { if(!bankLogoImg.classList.contains('visible')) bankLogoImg.src = ''; }, 200);
 
-            if (cardData) {
-                cardVisual.classList.add(`bank-${cardData.bank}`);
-                bankLogoImg.src = bankLogos[cardData.bank];
+            // 2. Si detecta banco, aplicar estilo y logo
+            if (detectedBank) {
+                cardVisual.classList.add(`bank-${detectedBank}`);
+                bankLogoImg.src = bankLogos[detectedBank];
+                // Forzamos un pequeño reflow para que la animación funcione
+                void bankLogoImg.offsetWidth;
                 bankLogoImg.classList.add('visible');
-                networkLogoImg.src = networkLogos[cardData.network];
-                networkLogoImg.style.opacity = '1';
-            } else {
-                let net = null;
-                if (/^4/.test(numberRaw)) net = 'visa';
-                else if (/^5[1-5]/.test(numberRaw)) net = 'mastercard';
-                else if (/^3[47]/.test(numberRaw)) net = 'amex';
-                if(net) {
-                    networkLogoImg.src = networkLogos[net];
-                    networkLogoImg.style.opacity = '1';
-                }
             }
-
+            
+            // 3. Actualizar números
             let formattedNum = numberRaw.match(/.{1,4}/g)?.join(' ') || numberRaw;
             document.getElementById('displayNumber').innerText = formattedNum || '#### #### #### ####';
             document.getElementById('displayExpiry').innerText = inputExpiry.value || 'MM/AA';
         }
 
+        // VALIDACIÓN MATEMÁTICA (Luhn)
         function luhnCheck(val) {
             let sum = 0, shouldDouble = false;
             for (let i = val.length - 1; i >= 0; i--) {
@@ -367,6 +340,7 @@
             return true;
         }
 
+        // EVENTOS
         inputNumber.addEventListener('input', (e) => {
             let val = e.target.value.replace(/\D/g, '');
             e.target.value = val.replace(/(\d{4})(?=\d)/g, '$1 ').trim();
@@ -389,17 +363,17 @@
 
             let isValid = true; 
             let title = "TARJETA ACEPTADA";
-            let msg = "La tarjeta ha sido validada y agregada correctamente.";
+            let msg = "Tarjeta validada correctamente.";
 
             if (numRaw.length < 13 || !luhnCheck(numRaw)) {
-                isValid = false; title = "TARJETA NO VÁLIDA"; msg = "El número no pasó la verificación de seguridad.";
+                isValid = false; title = "NO VÁLIDA"; msg = "Error en número de tarjeta.";
             } else if (!validateExpiry(expRaw)) {
-                isValid = false; title = "FECHA INVÁLIDA"; msg = "La tarjeta ha expirado o la fecha es incorrecta.";
+                isValid = false; title = "NO VÁLIDA"; msg = "Fecha incorrecta o vencida.";
             }
 
             modalIcon.innerText = isValid ? '✨' : '⚠️';
             modalTitle.innerText = title;
-            modalTitle.style.color = isValid ? '#d4af37' : '#ef4444';
+            modalTitle.style.color = isValid ? 'var(--gold-color)' : '#ef4444';
             modalMsg.innerText = msg;
             resultModal.classList.add('active');
         });
