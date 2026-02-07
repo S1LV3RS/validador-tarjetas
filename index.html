@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Validator Pro | Neon Final</title>
+    <title>Validator Pro | Chrome Neon</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -44,21 +44,23 @@
             gap: 35px;
         }
 
-        /* HEADER REDISEÑADO (Menos iluminado, nueva tipografía) */
+        /* HEADER ESTILO CROMO/METÁLICO */
         .header-title { text-align: center; }
         
         .header-title h1 {
-            font-family: 'Orbitron', sans-serif; /* Tipografía futurista */
+            font-family: 'Orbitron', sans-serif;
             font-weight: 900;
-            font-size: 2.2rem;
+            font-size: 2.3rem;
             letter-spacing: 1px;
             margin-bottom: 5px;
-            color: #fff;
-            /* Resplandor más controlado y definido */
-            text-shadow: 
-                0 0 5px #fff,
-                0 0 15px var(--neon-cyan),
-                0 0 30px var(--neon-purple);
+            
+            /* Efecto Metálico (Cromo) */
+            background: linear-gradient(to bottom, #cccccc, #ffffff, #888888, #ffffff, #aaaaaa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            
+            /* Sombra para dar volumen metálico, menos resplandor */
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.8));
         }
 
         .subtitle {
@@ -67,7 +69,7 @@
             letter-spacing: 4px;
             text-transform: uppercase;
             font-weight: 700;
-            text-shadow: 0 0 10px var(--neon-cyan);
+            text-shadow: 0 0 5px var(--neon-cyan); /* Resplandor más sutil */
             opacity: 0.8;
         }
 
@@ -97,23 +99,23 @@
 
         .card-top { 
             display: flex; 
-            justify-content: space-between; 
+            justify-content: space-between; /* Asegura que los elementos se vayan a los extremos */
             align-items: center;
             height: 40px; 
+            width: 100%; /* Asegura ancho total */
         }
 
-        /* NUEVO CHIP NEÓN */
+        /* CHIP NEÓN */
         .chip {
             width: 45px; height: 32px;
-            background: transparent; /* Fondo transparente */
-            border: 2px solid var(--neon-cyan); /* Borde neón */
+            background: transparent;
+            border: 2px solid var(--neon-cyan);
             border-radius: 6px;
             position: relative;
-            /* Brillo interno y externo */
             box-shadow: inset 0 0 5px var(--neon-cyan), 0 0 5px var(--neon-cyan);
             overflow: hidden;
+            flex-shrink: 0; /* Evita que se encoja */
         }
-        /* Líneas de circuito internas neón */
         .chip::after {
             content: ''; position: absolute; inset: 4px;
             border: 1px solid var(--neon-purple);
@@ -123,22 +125,20 @@
             opacity: 0.8;
         }
 
-        /* Logo Visa Iluminado */
+        /* LOGO VISA ALINEADO A LA DERECHA */
         .card-brand-logo { 
             height: 32px; width: auto; object-fit: contain; 
-            filter: drop-shadow(0 0 8px var(--neon-cyan)) brightness(1.2); 
+            filter: drop-shadow(0 0 8px var(--neon-cyan)) brightness(1.2);
+            /* margin-left: auto; Redundante con space-between pero asegura */
         }
 
-        /* ARREGLO DEFINITIVO DE NÚMEROS LINEALES */
+        /* NÚMEROS LINEALES */
         .card-number-display {
             font-family: 'JetBrains Mono', monospace;
-            /* Reduje un poco el tamaño máximo y el espaciado para garantizar una línea */
             font-size: clamp(1.2rem, 4.5vw, 1.6rem);
             letter-spacing: 1px; 
-            
             display: flex; justify-content: center; width: 100%;
-            white-space: nowrap; /* Fuerza a no romper la línea */
-            
+            white-space: nowrap;
             color: #fff;
             text-shadow: 0 0 10px rgba(0, 255, 210, 0.8);
             margin-top: 15px; font-weight: 700;
@@ -217,8 +217,7 @@
         }
         .btn-validate:active { transform: scale(0.98); }
 
-
-        /* MODAL NEÓN CON NUEVOS ICONOS */
+        /* MODAL NEÓN */
         .modal-overlay {
             position: fixed; inset: 0;
             background: rgba(0,0,0,0.95); backdrop-filter: blur(20px);
@@ -237,21 +236,13 @@
         }
         .modal-overlay.active .modal-content { transform: scale(1); }
 
-        /* Estilo base para el icono */
         .status-icon { 
             font-size: 5rem; line-height: 1; margin-bottom: 20px; display: block; 
-            font-family: sans-serif; /* Para que los caracteres se vean bien */
+            font-family: sans-serif;
         }
 
-        /* ESTILOS ESPECÍFICOS PARA PALOMITA Y X NEÓN */
-        #modalIcon.valid-icon {
-            color: var(--neon-cyan);
-            text-shadow: 0 0 20px var(--neon-cyan), 0 0 40px var(--neon-cyan);
-        }
-        #modalIcon.invalid-icon {
-            color: var(--neon-pink);
-            text-shadow: 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink);
-        }
+        #modalIcon.valid-icon { color: var(--neon-cyan); text-shadow: 0 0 20px var(--neon-cyan), 0 0 40px var(--neon-cyan); }
+        #modalIcon.invalid-icon { color: var(--neon-pink); text-shadow: 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink); }
         
         #modalTitle.valid { color: var(--neon-cyan); text-shadow: 0 0 20px var(--neon-cyan); }
         #modalTitle.invalid { color: var(--neon-pink); text-shadow: 0 0 20px var(--neon-pink); }
@@ -334,7 +325,7 @@
 </div>
 
 <script>
-    const randomNames = ["DIEGO SANTOS", "MARIA GARCIA", "JUAN PEREZ", "ANA LOPEZ", "CARLOS RUIZ", "ALEX MORGAN", "DAVID SMITH"];
+    // Eliminado el array de nombres aleatorios
     const brandLogos = {
         visa: 'https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg',
         mastercard: 'https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg',
@@ -346,11 +337,9 @@
     const inputExpiry = document.getElementById('inputExpiry');
     const resultModal = document.getElementById('resultModal');
     const modalTitle = document.getElementById('modalTitle');
-    const modalIcon = document.getElementById('modalIcon'); // Referencia al icono
+    const modalIcon = document.getElementById('modalIcon');
 
-    window.onload = () => {
-        document.getElementById('displayName').textContent = randomNames[Math.floor(Math.random() * randomNames.length)];
-    };
+    // Eliminado window.onload para nombres aleatorios
 
     function updateCardUI(numberRaw) {
         let brand = null;
@@ -416,15 +405,14 @@
             isValid = false; msg = "La fecha de vencimiento no es válida.";
         }
 
-        // CAMBIO DE ICONOS A PALOMITA/X NEÓN
         if (isValid) {
-            modalIcon.textContent = '✓'; // Palomita
-            modalIcon.className = 'status-icon valid-icon'; // Clase para color cian
+            modalIcon.textContent = '✓';
+            modalIcon.className = 'status-icon valid-icon';
             modalTitle.textContent = 'VÁLIDA';
             modalTitle.className = 'valid';
         } else {
-            modalIcon.textContent = '✕'; // X
-            modalIcon.className = 'status-icon invalid-icon'; // Clase para color rosa
+            modalIcon.textContent = '✕';
+            modalIcon.className = 'status-icon invalid-icon';
             modalTitle.textContent = 'INVÁLIDA';
             modalTitle.className = 'invalid';
         }
