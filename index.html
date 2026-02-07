@@ -3,24 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Validator Pro | Neon Style</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>Validator Pro | Neon Final</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-body: #020205;
             --card-surface: #0a0a12;
             --text-main: #ffffff;
-            --text-muted: #888;
             
-            /* COLORES NEÓN VIBRANTES */
+            /* COLORES NEÓN */
             --neon-cyan: #00ffd2;
             --neon-pink: #ff00ff;
             --neon-purple: #bd00ff;
-            
-            /* Sombras y brillos */
-            --glow-cyan: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan), 0 0 40px var(--neon-cyan);
-            --glow-pink: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink);
-            --glow-mix: 0 0 15px var(--neon-cyan), 0 0 30px var(--neon-purple);
             
             --border-color: rgba(0, 255, 210, 0.3);
         }
@@ -36,7 +30,6 @@
             align-items: center;
             min-height: 100vh; 
             padding: 40px 20px;
-            /* Fondo de rejilla cyberpunk sutil */
             background-image: 
                 linear-gradient(rgba(0, 255, 210, 0.03) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(0, 255, 210, 0.03) 1px, transparent 1px);
@@ -51,26 +44,22 @@
             gap: 35px;
         }
 
-        /* HEADER TIPO NEÓN (Referencia 1) */
+        /* HEADER REDISEÑADO (Menos iluminado, nueva tipografía) */
         .header-title { text-align: center; }
         
         .header-title h1 {
-            font-weight: 800;
+            font-family: 'Orbitron', sans-serif; /* Tipografía futurista */
+            font-weight: 900;
             font-size: 2.2rem;
-            letter-spacing: -1px;
+            letter-spacing: 1px;
             margin-bottom: 5px;
-            /* Efecto de texto de neón */
             color: #fff;
+            /* Resplandor más controlado y definido */
             text-shadow: 
                 0 0 5px #fff,
-                0 0 10px #fff,
-                0 0 20px var(--neon-cyan),
-                0 0 40px var(--neon-purple),
-                0 0 80px var(--neon-purple);
+                0 0 15px var(--neon-cyan),
+                0 0 30px var(--neon-purple);
         }
-        
-        /* Eliminé las clases separadas para unificar el brillo */
-        .title-cyan, .title-purple { color: inherit; }
 
         .subtitle {
             color: var(--neon-cyan);
@@ -82,7 +71,7 @@
             opacity: 0.8;
         }
 
-        /* TARJETA VIRTUAL NEÓN (Arreglada) */
+        /* TARJETA VIRTUAL */
         .virtual-card {
             width: 100%;
             aspect-ratio: 1.58/1;
@@ -90,7 +79,6 @@
             border-radius: 16px;
             padding: 25px;
             position: relative;
-            /* Borde y brillo neón */
             border: 2px solid var(--neon-cyan);
             box-shadow: 
                 0 0 20px rgba(0, 255, 210, 0.2),
@@ -101,45 +89,55 @@
             overflow: hidden;
         }
         
-        /* Reflejo sutil en la tarjeta */
         .virtual-card::before {
             content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
             background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
             transform: rotate(30deg); pointer-events: none;
         }
 
-        /* ARREGLO DE ALINEACIÓN SUPERIOR */
         .card-top { 
             display: flex; 
             justify-content: space-between; 
-            align-items: center; /* Centra verticalmente el chip y el logo */
+            align-items: center;
             height: 40px; 
         }
 
+        /* NUEVO CHIP NEÓN */
         .chip {
             width: 45px; height: 32px;
-            background: linear-gradient(135deg, #ffd700, #b8860b);
+            background: transparent; /* Fondo transparente */
+            border: 2px solid var(--neon-cyan); /* Borde neón */
             border-radius: 6px;
             position: relative;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
-            border: 1px solid #ffe14f;
+            /* Brillo interno y externo */
+            box-shadow: inset 0 0 5px var(--neon-cyan), 0 0 5px var(--neon-cyan);
+            overflow: hidden;
         }
+        /* Líneas de circuito internas neón */
         .chip::after {
-            content: ''; position: absolute; inset: 0;
-            border: 1px solid rgba(0,0,0,0.3); border-radius: 6px;
-            background-image: repeating-linear-gradient(transparent, transparent 8px, rgba(0,0,0,0.4) 8px, rgba(0,0,0,0.4) 9px);
+            content: ''; position: absolute; inset: 4px;
+            border: 1px solid var(--neon-purple);
+            border-radius: 4px;
+            background-image: repeating-linear-gradient(90deg, var(--neon-cyan) 0px, var(--neon-cyan) 1px, transparent 1px, transparent 8px);
+            box-shadow: 0 0 5px var(--neon-purple);
+            opacity: 0.8;
         }
 
-        .card-brand-logo { height: 32px; width: auto; object-fit: contain; filter: drop-shadow(0 0 5px rgba(255,255,255,0.5)); }
+        /* Logo Visa Iluminado */
+        .card-brand-logo { 
+            height: 32px; width: auto; object-fit: contain; 
+            filter: drop-shadow(0 0 8px var(--neon-cyan)) brightness(1.2); 
+        }
 
-        /* ARREGLO DE NÚMEROS LINEALES */
+        /* ARREGLO DEFINITIVO DE NÚMEROS LINEALES */
         .card-number-display {
             font-family: 'JetBrains Mono', monospace;
-            font-size: clamp(1.3rem, 5vw, 1.7rem);
-            letter-spacing: 2px;
+            /* Reduje un poco el tamaño máximo y el espaciado para garantizar una línea */
+            font-size: clamp(1.2rem, 4.5vw, 1.6rem);
+            letter-spacing: 1px; 
             
-            /* Asegura centrado perfecto */
             display: flex; justify-content: center; width: 100%;
+            white-space: nowrap; /* Fuerza a no romper la línea */
             
             color: #fff;
             text-shadow: 0 0 10px rgba(0, 255, 210, 0.8);
@@ -169,7 +167,6 @@
             position: relative;
             overflow: hidden;
         }
-        /* Luz ambiental en el formulario */
         .input-terminal::after {
              content: ''; position: absolute; bottom: -50px; right: -50px; width: 100px; height: 100px;
              background: var(--neon-purple); filter: blur(80px); opacity: 0.2; pointer-events: none;
@@ -187,8 +184,8 @@
         .input-field {
             width: 100%; padding: 16px;
             background: rgba(0,0,0,0.6);
-            border: 2px solid var(--border-color); /* Borde más visible */
-            border-radius: 8px; /* Menos redondeado */
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
             color: var(--text-main);
             font-family: 'JetBrains Mono', monospace; font-size: 1.1rem;
             outline: none; transition: 0.3s;
@@ -201,41 +198,30 @@
         }
         .input-field::placeholder { color: rgba(255,255,255,0.2); }
 
-        /* BOTÓN RECTANGULAR NEÓN (Referencia 2) */
+        /* BOTÓN RECTANGULAR NEÓN */
         .btn-validate {
             width: 100%; padding: 18px; 
-            background: transparent; /* Fondo transparente para el efecto neón */
+            background: transparent;
             color: var(--neon-cyan);
             font-size: 1.1rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
             cursor: pointer; margin-top: 10px;
-            
-            /* Estilo rectangular neón */
             border: 3px solid var(--neon-cyan);
-            border-radius: 4px; /* Esquinas casi rectas */
-            box-shadow: 
-                0 0 10px var(--neon-cyan),
-                inset 0 0 10px var(--neon-cyan);
+            border-radius: 4px;
+            box-shadow: 0 0 10px var(--neon-cyan), inset 0 0 10px var(--neon-cyan);
             text-shadow: 0 0 10px var(--neon-cyan);
             transition: all 0.3s ease;
-            position: relative; overflow: hidden;
         }
-
-        /* Efecto hover intenso */
         .btn-validate:hover {
-            background: var(--neon-cyan);
-            color: #000;
-            box-shadow: 
-                0 0 30px var(--neon-cyan),
-                0 0 60px var(--neon-cyan);
-            text-shadow: none;
+            background: var(--neon-cyan); color: #000;
+            box-shadow: 0 0 30px var(--neon-cyan), 0 0 60px var(--neon-cyan); text-shadow: none;
         }
         .btn-validate:active { transform: scale(0.98); }
 
 
-        /* MODAL (Estilo Neón) */
+        /* MODAL NEÓN CON NUEVOS ICONOS */
         .modal-overlay {
             position: fixed; inset: 0;
-            background: rgba(0,0,0,0.92); backdrop-filter: blur(15px);
+            background: rgba(0,0,0,0.95); backdrop-filter: blur(20px);
             display: flex; justify-content: center; align-items: center;
             opacity: 0; pointer-events: none; transition: 0.3s; z-index: 9999;
             padding: 20px;
@@ -246,14 +232,27 @@
             background: #0a0a12; padding: 40px 30px; border-radius: 16px;
             text-align: center; width: 100%; max-width: 340px;
             border: 2px solid var(--neon-cyan);
-            box-shadow: 0 0 50px rgba(0, 255, 210, 0.3);
+            box-shadow: 0 0 50px rgba(0, 255, 210, 0.2);
             transform: scale(0.9); transition: 0.4s;
         }
         .modal-overlay.active .modal-content { transform: scale(1); }
 
-        .status-icon { font-size: 4rem; margin-bottom: 20px; display: block; text-shadow: 0 0 20px currentColor; }
+        /* Estilo base para el icono */
+        .status-icon { 
+            font-size: 5rem; line-height: 1; margin-bottom: 20px; display: block; 
+            font-family: sans-serif; /* Para que los caracteres se vean bien */
+        }
+
+        /* ESTILOS ESPECÍFICOS PARA PALOMITA Y X NEÓN */
+        #modalIcon.valid-icon {
+            color: var(--neon-cyan);
+            text-shadow: 0 0 20px var(--neon-cyan), 0 0 40px var(--neon-cyan);
+        }
+        #modalIcon.invalid-icon {
+            color: var(--neon-pink);
+            text-shadow: 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink);
+        }
         
-        /* Títulos del modal con neón */
         #modalTitle.valid { color: var(--neon-cyan); text-shadow: 0 0 20px var(--neon-cyan); }
         #modalTitle.invalid { color: var(--neon-pink); text-shadow: 0 0 20px var(--neon-pink); }
 
@@ -347,6 +346,7 @@
     const inputExpiry = document.getElementById('inputExpiry');
     const resultModal = document.getElementById('resultModal');
     const modalTitle = document.getElementById('modalTitle');
+    const modalIcon = document.getElementById('modalIcon'); // Referencia al icono
 
     window.onload = () => {
         document.getElementById('displayName').textContent = randomNames[Math.floor(Math.random() * randomNames.length)];
@@ -405,7 +405,6 @@
     document.getElementById('btnValidate').addEventListener('click', () => {
         const numRaw = inputNumber.value.replace(/\s/g, '');
         const expRaw = inputExpiry.value;
-        const modalIcon = document.getElementById('modalIcon');
         const modalMsg = document.getElementById('modalMsg');
 
         let isValid = true;
@@ -417,11 +416,18 @@
             isValid = false; msg = "La fecha de vencimiento no es válida.";
         }
 
-        modalIcon.textContent = isValid ? '✨' : '⚠️';
-        modalTitle.textContent = isValid ? 'VÁLIDA' : 'INVÁLIDA';
-        
-        // Aplica clase para color neón en el modal
-        modalTitle.className = isValid ? 'valid' : 'invalid';
+        // CAMBIO DE ICONOS A PALOMITA/X NEÓN
+        if (isValid) {
+            modalIcon.textContent = '✓'; // Palomita
+            modalIcon.className = 'status-icon valid-icon'; // Clase para color cian
+            modalTitle.textContent = 'VÁLIDA';
+            modalTitle.className = 'valid';
+        } else {
+            modalIcon.textContent = '✕'; // X
+            modalIcon.className = 'status-icon invalid-icon'; // Clase para color rosa
+            modalTitle.textContent = 'INVÁLIDA';
+            modalTitle.className = 'invalid';
+        }
         
         modalMsg.textContent = msg;
         resultModal.classList.add('active');
