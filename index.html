@@ -3,316 +3,422 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Validador Web</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>Validator Pro | Silver No-CVC</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Montserrat:wght@300;400;500;600&family=Courier+Prime:wght@400;700&family=Pinyon+Script&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --bg-dark: #0a0a0f;
-            --card-bg: #13131a;
-            --text-primary: #ffffff;
-            --text-secondary: #8a8a9b;
-            --accent-blue: #00f2ff;
-            --accent-purple: #7b2cbf;
-            --success: #00ff88;
-            --error: #ff0055;
-            --gradient-btn: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
-            --card-gradient: linear-gradient(135deg, #1a1a24, #2a2a35);
+            --bg-color: #000000;
+            --text-light: #ffffff;
+            --text-muted: #aaaaaa;
+            
+            /* PALETA SILVER */
+            --silver-color: #e0e0e0;
+            --silver-shine: #ffffff;
+            --silver-dark: #a0a0a0;
+            --silver-gradient: linear-gradient(135deg, #a0a0a0, #ffffff, #a0a0a0);
+
+            /* FONDOS BANCOS */
+            --bg-default: linear-gradient(145deg, #1a1a1a, #050505);
+            --bg-banorte: linear-gradient(145deg, #4a0000, #1a0000);
+            --bg-bbva: linear-gradient(145deg, #001f3f, #000810);
+            --bg-santander: linear-gradient(145deg, #6a0000, #2a0000);
+            --bg-chase: linear-gradient(145deg, #002b55, #001020);
+            --bg-bofa: linear-gradient(145deg, #5a0000, #200000);
+            --bg-citi: linear-gradient(145deg, #002f5f, #001222);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-primary);
+        /* LAYOUT FIJO */
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden; 
+            background-color: var(--bg-color);
+            font-family: 'Montserrat', sans-serif;
+            background-image: radial-gradient(circle at 50% 0%, #1a1a1a 0%, #000000 95%);
             display: flex;
-            justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-            background-image: radial-gradient(circle at top right, rgba(0, 242, 255, 0.08), transparent 40%),
-                              radial-gradient(circle at bottom left, rgba(123, 44, 191, 0.08), transparent 40%);
+            justify-content: center;
         }
 
-        .container {
+        .main-wrapper {
             width: 100%;
-            max-width: 400px;
+            max-width: 380px; 
+            padding: 20px;
             display: flex;
             flex-direction: column;
-            gap: 30px;
+            justify-content: center; 
             align-items: center;
+            gap: 30px;
         }
 
-        .header-title h1 {
-            text-align: center;
-            font-weight: 800;
-            font-size: 1.8rem;
-            background: var(--gradient-btn);
+        /* HEADER */
+        header { text-align: center; margin-bottom: 5px; }
+
+        h1 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 2.3rem;
+            font-weight: 700;
+            background: var(--silver-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            margin: 0;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+            display: inline-block;
+            position: relative;
         }
 
-        /* TARJETA VIRTUAL */
-        .virtual-card {
+        h1::before, h1::after {
+            content: ''; display: block; width: 25px; height: 1px;
+            background: var(--silver-gradient); position: absolute; top: 55%; opacity: 0.7;
+        }
+        h1::before { left: -35px; }
+        h1::after { right: -35px; }
+
+        p.subtitle {
+            color: var(--text-muted); font-size: 0.65rem; letter-spacing: 5px; text-transform: uppercase; margin-top: 5px;
+        }
+
+        /* TARJETA VISUAL */
+        .credit-card {
+            background: var(--bg-default);
+            border-radius: 18px;
+            padding: 25px;
             width: 100%;
             aspect-ratio: 1.58/1;
-            background: var(--card-gradient);
-            border-radius: 16px;
-            padding: 20px;
             position: relative;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.15) inset;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: transform 0.3s;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
         }
+        
+        .credit-card.bank-banorte { background: var(--bg-banorte); }
+        .credit-card.bank-bbva { background: var(--bg-bbva); }
+        .credit-card.bank-santander { background: var(--bg-santander); }
+        .credit-card.bank-chase { background: var(--bg-chase); }
+        .credit-card.bank-bofa { background: var(--bg-bofa); }
+        .credit-card.bank-citi { background: var(--bg-citi); }
 
-        .card-top { display: flex; justify-content: space-between; align-items: flex-start; }
+        .card-top { height: 32px; display: flex; align-items: flex-start; }
 
-        .chip {
-            width: 45px; height: 32px;
-            background: linear-gradient(135deg, #d4af37, #a3842c);
-            border-radius: 6px;
-            position: relative;
+        .bank-logo {
+            height: 26px; width: auto; object-fit: contain;
+            filter: brightness(0) invert(1) drop-shadow(0 2px 4px rgba(0,0,0,0.8));
+            opacity: 0; transform: translateY(-10px); transition: all 0.5s ease;
         }
-        .chip::after {
-            content: ''; position: absolute; inset: 0;
-            border: 1px solid rgba(0,0,0,0.2); border-radius: 6px;
-            background-image: repeating-linear-gradient(transparent, transparent 8px, rgba(0,0,0,0.1) 8px, rgba(0,0,0,0.1) 9px);
-        }
+        .bank-logo.visible { opacity: 1; transform: translateY(0); }
 
-        .card-brand-logo { height: 35px; width: auto; object-fit: contain; }
-
-        .card-number-display {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: clamp(1.2rem, 5vw, 1.5rem);
-            letter-spacing: 2px;
+        /* NÚMERO CENTRADO */
+        .card-number {
+            font-family: 'Courier Prime', monospace;
+            font-size: clamp(1.1rem, 5vw, 1.6rem); 
+            color: #ffffff;
+            text-shadow: 0 2px 5px rgba(0,0,0,1);
+            
+            white-space: nowrap; 
+            display: block;
             text-align: center;
             width: 100%;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-            margin: 10px 0;
+            
+            letter-spacing: 2px;
+            text-indent: 2px; 
+            
+            margin-top: 5px; z-index: 2; font-weight: 700;
+            min-height: 28px;
         }
 
-        .card-details { display: flex; justify-content: space-between; align-items: flex-end; }
+        .card-bottom { display: flex; justify-content: space-between; align-items: flex-end; z-index: 2; }
+        .card-details { display: flex; gap: 30px; }
         
-        .detail-group label {
-            display: block; font-size: 0.6rem; text-transform: uppercase;
-            color: var(--text-secondary); margin-bottom: 2px; letter-spacing: 1px;
+        .detail-box label {
+            font-family: 'Montserrat', sans-serif; display: block; font-size: 0.55rem; 
+            color: rgba(255,255,255,0.8); text-transform: uppercase; margin-bottom: 2px; letter-spacing: 1.5px;
         }
-        .detail-group div {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem; text-transform: uppercase;
+        
+        .user-name {
+            font-family: 'Pinyon Script', cursive; font-size: 1.6rem; color: #fff; text-transform: none; line-height: 1;
         }
+        .expiry-date {
+            font-family: 'Courier Prime', monospace; font-size: 0.95rem; color: #fff; letter-spacing: 1px; font-weight: 700; padding-bottom: 2px;
+        }
+
+        .network-logo {
+            height: 25px; width: auto; object-fit: contain;
+            opacity: 0; transform: translateX(10px); transition: all 0.5s ease;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
+        }
+        .network-logo.visible { opacity: 1; transform: translateX(0); }
 
         /* FORMULARIO */
-        .input-terminal {
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 20px;
+        .form-container {
             width: 100%;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            border: 1px solid rgba(255,255,255,0.05);
+            background: rgba(20, 20, 20, 0.8);
+            padding: 30px 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px -5px rgba(0,0,0,0.9);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .terminal-header { display: flex; align-items: center; margin-bottom: 20px; }
-        .terminal-dots { display: flex; gap: 6px; }
-        .dot { width: 8px; height: 8px; border-radius: 50%; }
-        .dot.red { background: #ff5f56; } .dot.yellow { background: #ffbd2e; } .dot.green { background: #27c93f; }
-        
-        .input-group { margin-bottom: 20px; }
+        .input-group { margin-bottom: 25px; }
         
         .input-label {
-            display: block; font-family: 'JetBrains Mono', monospace;
-            color: var(--accent-blue); margin-bottom: 8px; font-size: 0.85rem;
+            display: block; color: var(--text-light);
+            font-size: 0.65rem; margin-bottom: 8px;
+            letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600;
         }
-        
-        .input-field {
-            width: 100%; padding: 14px;
-            background: rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 12px;
-            color: var(--text-primary);
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.1rem;
-            outline: none; transition: 0.3s;
-        }
-        .input-field:focus { border-color: var(--accent-blue); }
 
-        .btn-validate {
-            width: 100%; padding: 16px; border: none; border-radius: 12px;
-            background: var(--gradient-btn); color: white;
-            font-size: 1rem; font-weight: 700; text-transform: uppercase;
-            cursor: pointer; box-shadow: 0 4px 15px rgba(0, 242, 255, 0.2);
+        input {
+            width: 100%; background: transparent; border: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3); padding: 10px 0;
+            color: #fff; font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem; letter-spacing: 2px; transition: all 0.3s ease;
         }
-        .btn-validate:active { transform: scale(0.98); }
+        input:focus { outline: none; border-bottom: 1px solid var(--silver-shine); }
+        input::placeholder { color: rgba(255, 255, 255, 0.3); }
+
+        /* BOTÓN PLATEADO */
+        .btn-add {
+            width: 100%; padding: 16px;
+            background: linear-gradient(145deg, #ffffff, #dcdcdc);
+            border: 2px solid var(--silver-dark);
+            border-radius: 12px;
+            color: #000000;
+            font-weight: 700; font-size: 0.9rem;
+            letter-spacing: 2px; text-transform: uppercase;
+            cursor: pointer; transition: all 0.4s ease;
+            margin-top: 10px;
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+        }
+        .btn-add:hover {
+            background: var(--silver-gradient); border-color: transparent;
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.4); transform: translateY(-2px);
+        }
+        .btn-add:active { transform: translateY(0); }
 
         /* MODAL */
         .modal-overlay {
-            position: fixed; inset: 0;
-            background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
+            position: fixed; inset: 0; background: rgba(0,0,0,0.95); backdrop-filter: blur(8px);
             display: flex; justify-content: center; align-items: center;
-            opacity: 0; pointer-events: none; transition: 0.3s; z-index: 999;
-            padding: 20px;
+            opacity: 0; pointer-events: none; transition: 0.4s; z-index: 999;
         }
         .modal-overlay.active { opacity: 1; pointer-events: all; }
-        
         .modal-content {
-            background: #181820; padding: 30px; border-radius: 24px;
-            text-align: center; width: 100%; max-width: 340px;
-            border: 1px solid rgba(255,255,255,0.1);
-            transform: scale(0.9); transition: 0.4s;
+            background: #000; border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 40px 30px; border-radius: 16px; text-align: center;
+            box-shadow: 0 20px 70px rgba(0,0,0,1); transform: scale(0.95); transition: 0.4s;
+            max-width: 320px; width: 90%;
         }
         .modal-overlay.active .modal-content { transform: scale(1); }
-
-        .status-icon { font-size: 4rem; margin-bottom: 15px; display: block; }
+        .status-icon { font-size: 3.5rem; margin-bottom: 15px; display: block; }
         .btn-close {
-            margin-top: 20px; background: rgba(255,255,255,0.1);
-            color: white; border: none; padding: 12px 30px; border-radius: 50px;
-            font-weight: 600; cursor: pointer;
+            background: transparent; border: 1px solid #777; color: #ccc;
+            padding: 8px 25px; border-radius: 50px; margin-top: 20px; cursor: pointer; transition: 0.3s;
         }
-        .hidden { display: none; }
+        .btn-close:hover { border-color: var(--silver-shine); color: var(--silver-shine); }
 
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="header-title"><h1>VALIDATOR PRO</h1></div>
+    <div class="main-wrapper">
+        <header>
+            <h1>VALIDATOR PRO</h1>
+            <p class="subtitle">Silver Edition</p>
+        </header>
 
-    <div class="virtual-card">
-        <div class="card-top">
-            <div class="chip"></div>
-            <img src="" class="card-brand-logo hidden" id="cardBrandLogo">
-            <span id="cardBrandText" style="font-weight: 600; font-size: 1.2rem;"></span>
+        <div class="credit-card" id="cardVisual">
+            <div class="card-top">
+                <img src="" alt="" class="bank-logo" id="bankLogo">
+            </div>
+            
+            <div class="card-number" id="displayNumber"></div>
+            
+            <div class="card-bottom">
+                <div class="card-details">
+                    <div class="detail-box">
+                        <label>Titular</label>
+                        <div class="user-name">Usuario</div>
+                    </div>
+                    <div class="detail-box">
+                        <label>Vence</label>
+                        <div id="displayExpiry" class="expiry-date">MM/AA</div>
+                    </div>
+                </div>
+                <img src="" alt="" class="network-logo" id="networkLogo">
+            </div>
         </div>
-        <div class="card-number-display" id="displayNumber">#### #### #### ####</div>
-        <div class="card-details">
-            <div class="detail-group"><label>TITULAR</label><div id="displayName">CARGANDO...</div></div>
-            <div class="detail-group"><label>VENCE</label><div id="displayExpiry">MM/AA</div></div>
-        </div>
-    </div>
 
-    <div class="input-terminal">
-        <div class="terminal-header"><div class="terminal-dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div></div>
-        
-        <form id="paymentForm" autocomplete="on" onsubmit="return false;">
+        <form class="form-container" autocomplete="on" onsubmit="return false;">
+            
             <div class="input-group">
-                <label class="input-label">NÚMERO DE TARJETA</label>
-                <input type="text" id="inputNumber" class="input-field" placeholder="0000 0000 0000 0000" maxlength="19" name="cc-number" autocomplete="cc-number" inputmode="numeric">
+                <label class="input-label">Número de Tarjeta</label>
+                <input type="text" id="inputNumber" 
+                       placeholder="0000 0000 0000 0000" 
+                       maxlength="19" 
+                       inputmode="numeric" 
+                       autocomplete="cc-number" 
+                       name="cc-number">
             </div>
 
             <div class="input-group">
-                <label class="input-label">FECHA DE VENCIMIENTO</label>
-                <input type="text" id="inputExpiry" class="input-field" placeholder="MM/AA" maxlength="5" name="cc-exp" autocomplete="cc-exp" inputmode="numeric">
+                <label class="input-label">Vencimiento (MM/AA)</label>
+                <input type="text" id="inputExpiry" 
+                       placeholder="MM/AA" 
+                       maxlength="5" 
+                       inputmode="numeric" 
+                       autocomplete="cc-exp" 
+                       name="cc-exp">
             </div>
 
-            <button class="btn-validate" id="btnValidate">VALIDAR AHORA</button>
+            <button class="btn-add" id="btnValidate">Agregar Tarjeta</button>
         </form>
     </div>
-</div>
 
-<div class="modal-overlay" id="resultModal">
-    <div class="modal-content">
-        <div class="status-icon" id="modalIcon"></div>
-        <h2 style="margin-bottom: 10px;" id="modalTitle"></h2>
-        <p style="color: #888; font-size: 0.9rem;" id="modalMsg"></p>
-        <button class="btn-close" id="btnCloseModal">Cerrar</button>
+    <div class="modal-overlay" id="resultModal">
+        <div class="modal-content">
+            <div class="status-icon" id="modalIcon"></div>
+            <h3 style="color: var(--silver-shine); font-family: 'Cinzel Decorative'; margin-bottom: 10px;" id="modalTitle"></h3>
+            <p style="color: #aaa; font-size: 0.85rem;" id="modalMsg"></p>
+            <button class="btn-close" id="btnClose">Cerrar</button>
+        </div>
     </div>
-</div>
 
-<script>
-    const randomNames = ["DIEGO SANTOS", "MARIA GARCIA", "JUAN PEREZ", "ANA LOPEZ", "CARLOS RUIZ", "ALEX MORGAN", "DAVID SMITH"];
-    const brandLogos = {
-        visa: 'https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg',
-        mastercard: 'https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg',
-        amex: 'https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo.svg',
-        discover: 'https://upload.wikimedia.org/wikipedia/commons/5/57/Discover_Card_logo.svg'
-    };
+    <script>
+        const bankLogos = {
+            banorte: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Banorte_logo.svg/1024px-Banorte_logo.svg.png', 
+            bbva: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/BBVA_2019.svg/1024px-BBVA_2019.svg.png',
+            santander: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Banco_Santander_Logotipo.svg/1024px-Banco_Santander_Logotipo.svg.png',
+            chase: 'https://upload.wikimedia.org/wikipedia/commons/d/d6/Chase_logo_2007.svg',
+            bofa: 'https://upload.wikimedia.org/wikipedia/commons/2/20/Bank_of_America_logo.svg',
+            citi: 'https://upload.wikimedia.org/wikipedia/commons/1/1b/Citi.svg'
+        };
 
-    const inputNumber = document.getElementById('inputNumber');
-    const inputExpiry = document.getElementById('inputExpiry');
-    const resultModal = document.getElementById('resultModal');
+        const networkLogos = {
+            visa: 'https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg',
+            mastercard: 'https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg',
+            amex: 'https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo.svg',
+            discover: 'https://upload.wikimedia.org/wikipedia/commons/5/57/Discover_Card_logo.svg'
+        };
 
-    window.onload = () => {
-        document.getElementById('displayName').textContent = randomNames[Math.floor(Math.random() * randomNames.length)];
-    };
+        const binDatabase = {
+            '491566': 'banorte', '525678': 'banorte',
+            '415231': 'bbva',    '557907': 'bbva',
+            '491658': 'santander',
+            '414720': 'chase',   '426684': 'chase',
+            '482859': 'bofa',
+            '549099': 'citi',    '414709': 'citi'
+        };
 
-    function updateCardUI(numberRaw) {
-        let brand = null;
-        if (/^4/.test(numberRaw)) brand = 'visa';
-        else if (/^5[1-5]/.test(numberRaw)) brand = 'mastercard';
-        else if (/^3[47]/.test(numberRaw)) brand = 'amex';
-        else if (/^6(?:011|5)/.test(numberRaw)) brand = 'discover';
+        const inputNumber = document.getElementById('inputNumber');
+        const inputExpiry = document.getElementById('inputExpiry');
+        const cardVisual = document.getElementById('cardVisual');
+        const bankLogoImg = document.getElementById('bankLogo');
+        const networkLogoImg = document.getElementById('networkLogo');
+        const resultModal = document.getElementById('resultModal');
 
-        const logo = document.getElementById('cardBrandLogo');
-        const text = document.getElementById('cardBrandText');
-        
-        if (brand) { logo.src = brandLogos[brand]; logo.classList.remove('hidden'); text.textContent = ''; }
-        else { logo.classList.add('hidden'); text.textContent = ''; }
-        
-        document.getElementById('displayNumber').textContent = inputNumber.value || '#### #### #### ####';
-        document.getElementById('displayExpiry').textContent = inputExpiry.value || 'MM/AA';
-    }
+        function updateCardUI(numberRaw) {
+            const bin = numberRaw.substring(0, 6);
+            const detectedBank = binDatabase[bin];
 
-    function luhnCheck(val) {
-        let sum = 0, shouldDouble = false;
-        for (let i = val.length - 1; i >= 0; i--) {
-            let digit = parseInt(val.charAt(i));
-            if (shouldDouble) { if ((digit *= 2) > 9) digit -= 9; }
-            sum += digit; shouldDouble = !shouldDouble;
-        }
-        return (sum % 10) === 0;
-    }
+            cardVisual.className = 'credit-card'; 
+            bankLogoImg.classList.remove('visible');
+            setTimeout(() => { if(!bankLogoImg.classList.contains('visible')) bankLogoImg.src = ''; }, 200);
 
-    function validateExpiry(dateString) {
-        if (!/^\d{2}\/\d{2}$/.test(dateString)) return false;
-        const [month, yearStr] = dateString.split('/').map(Number);
-        const year = 2000 + yearStr;
-        const now = new Date();
-        if (month < 1 || month > 12) return false;
-        if (year < now.getFullYear() || (year === now.getFullYear() && month < (now.getMonth() + 1))) return false;
-        return true;
-    }
+            if (detectedBank) {
+                cardVisual.classList.add(`bank-${detectedBank}`);
+                bankLogoImg.src = bankLogos[detectedBank];
+                void bankLogoImg.offsetWidth;
+                bankLogoImg.classList.add('visible');
+            }
 
-    inputNumber.addEventListener('input', (e) => {
-        let val = e.target.value.replace(/\D/g, '');
-        e.target.value = val.replace(/(\d{4})(?=\d)/g, '$1 ').trim();
-        updateCardUI(val);
-    });
+            let network = null;
+            if (/^4/.test(numberRaw)) network = 'visa';
+            else if (/^5[1-5]/.test(numberRaw)) network = 'mastercard';
+            else if (/^3[47]/.test(numberRaw)) network = 'amex';
+            else if (/^6(?:011|5)/.test(numberRaw)) network = 'discover';
 
-    inputExpiry.addEventListener('input', (e) => {
-        let val = e.target.value.replace(/\D/g, '');
-        if (val.length >= 3) e.target.value = val.slice(0, 2) + '/' + val.slice(2, 4);
-        else e.target.value = val;
-        updateCardUI(inputNumber.value.replace(/\s/g,''));
-    });
-
-    document.getElementById('btnValidate').addEventListener('click', () => {
-        const numRaw = inputNumber.value.replace(/\s/g, '');
-        const expRaw = inputExpiry.value;
-        const modalIcon = document.getElementById('modalIcon');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalMsg = document.getElementById('modalMsg');
-
-        let isValid = true;
-        let msg = "Tarjeta verificada correctamente.";
-
-        if (numRaw.length < 13 || !luhnCheck(numRaw)) {
-            isValid = false; msg = "El número de tarjeta es incorrecto (Fallo Luhn).";
-        } else if (!validateExpiry(expRaw)) {
-            isValid = false; msg = "La fecha de vencimiento no es válida.";
+            if (network) {
+                networkLogoImg.src = networkLogos[network];
+                networkLogoImg.classList.add('visible');
+            } else {
+                networkLogoImg.classList.remove('visible');
+            }
+            
+            let formattedNum = '';
+            if (numberRaw.length > 0) {
+                formattedNum = numberRaw.match(/.{1,4}/g)?.join(' ') || numberRaw;
+            }
+            document.getElementById('displayNumber').innerText = formattedNum;
+            document.getElementById('displayExpiry').innerText = inputExpiry.value || 'MM/AA';
         }
 
-        modalIcon.textContent = isValid ? '✅' : '❌';
-        modalTitle.textContent = isValid ? 'VÁLIDA' : 'INVÁLIDA';
-        modalTitle.style.color = isValid ? '#00ff88' : '#ff0055';
-        modalMsg.textContent = msg;
-        resultModal.classList.add('active');
-    });
+        function luhnCheck(val) {
+            let sum = 0, shouldDouble = false;
+            for (let i = val.length - 1; i >= 0; i--) {
+                let digit = parseInt(val.charAt(i));
+                if (shouldDouble) { if ((digit *= 2) > 9) digit -= 9; }
+                sum += digit; shouldDouble = !shouldDouble;
+            }
+            return (sum % 10) === 0;
+        }
 
-    document.getElementById('btnCloseModal').addEventListener('click', () => resultModal.classList.remove('active'));
-    resultModal.addEventListener('click', (e) => { if(e.target === resultModal) resultModal.classList.remove('active'); });
-</script>
+        function validateExpiry(dateString) {
+            if (!/^\d{2}\/\d{2}$/.test(dateString)) return false;
+            const [month, yearStr] = dateString.split('/').map(Number);
+            const year = 2000 + yearStr; const now = new Date();
+            if (month < 1 || month > 12) return false;
+            if (year < now.getFullYear() || (year === now.getFullYear() && month < (now.getMonth() + 1))) return false;
+            return true;
+        }
+
+        inputNumber.addEventListener('input', (e) => {
+            let val = e.target.value.replace(/\D/g, '');
+            e.target.value = val.replace(/(\d{4})(?=\d)/g, '$1 ').trim();
+            updateCardUI(val);
+        });
+
+        inputExpiry.addEventListener('input', (e) => {
+            let val = e.target.value.replace(/\D/g, '');
+            if (val.length >= 3) e.target.value = val.slice(0, 2) + '/' + val.slice(2, 4);
+            else e.target.value = val;
+            updateCardUI(inputNumber.value.replace(/\s/g,''));
+        });
+
+        document.getElementById('btnValidate').addEventListener('click', (e) => {
+            e.preventDefault();
+            const numRaw = inputNumber.value.replace(/\s/g, '');
+            const expRaw = inputExpiry.value;
+            const modalIcon = document.getElementById('modalIcon');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalMsg = document.getElementById('modalMsg');
+
+            let isValid = true; 
+            let title = "TARJETA ACEPTADA";
+            let msg = "Validada correctamente.";
+
+            if (numRaw.length < 13 || !luhnCheck(numRaw)) {
+                isValid = false; title = "NO VÁLIDA"; msg = "Error en número de tarjeta.";
+            } else if (!validateExpiry(expRaw)) {
+                isValid = false; title = "NO VÁLIDA"; msg = "Fecha incorrecta.";
+            }
+
+            modalIcon.innerText = isValid ? '✨' : '⚠️';
+            modalTitle.innerText = title;
+            modalTitle.style.color = isValid ? 'var(--silver-shine)' : '#ef4444';
+            modalMsg.innerText = msg;
+            resultModal.classList.add('active');
+        });
+
+        document.getElementById('btnClose').addEventListener('click', () => resultModal.classList.remove('active'));
+    </script>
 </body>
 </html>
