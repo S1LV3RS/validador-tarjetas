@@ -87,14 +87,11 @@
             filter: brightness(0) invert(1);
         }
 
-        /* --- ARREGLO DE NÚMEROS DEFINITIVO --- */
+        /* NÚMEROS: Tamaño dinámico controlado para no salirse */
         .card-number-display {
             font-family: 'JetBrains Mono', monospace;
-            /* Reducido ligeramente para garantizar que quepa en pantallas delgadas */
             font-size: clamp(0.9rem, 4.5vw, 1.2rem);
-            /* Espacio reducido entre cada dígito */
             letter-spacing: 1px;
-            /* Espacio controlado entre los grupos de 4 dígitos */
             word-spacing: 3px;
             text-align: center;
             width: 100%;
@@ -124,7 +121,6 @@
         .input-field {
             width: 100%; padding: 18px;
             background: #48484e;
-            /* Borde superior sutil para dar luz */
             border: 1px solid rgba(255,255,255,0.05);
             border-bottom: none;
             border-radius: 14px;
@@ -134,7 +130,6 @@
             text-align: center;
             outline: none; transition: 0.3s;
             letter-spacing: 1px;
-            /* Sombra profunda para crear el efecto 3D / Flotante */
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.08);
         }
         .input-field:focus { 
@@ -159,32 +154,35 @@
         }
         .btn-validate:active { transform: scale(0.98); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); }
 
-        /* BOTONES INFERIORES */
+        /* --- ARREGLO DE BOTONES INFERIORES: IGUAL TAMAÑO Y ENCUADRE --- */
         .action-bar {
             display: flex;
-            justify-content: space-between;
+            gap: 15px; /* Separación exacta entre ambos botones */
             margin-top: 15px;
         }
 
         .btn-action {
+            flex: 1; /* Esto obliga a que ambos botones midan exactamente lo mismo (50% del espacio cada uno) */
+            justify-content: center; /* Centra el texto horizontalmente */
+            text-align: center;
             background: #48484e;
             color: #ffffff;
             border: 1px solid rgba(255,255,255,0.05);
-            padding: 12px 22px;
+            padding: 12px 0; /* Quitamos padding lateral para que el flex lo maneje */
             border-radius: 12px;
             font-family: 'Inter', sans-serif;
             font-weight: 600;
             font-size: 0.9rem;
             cursor: pointer;
             text-decoration: none;
-            display: inline-block;
+            display: flex;
+            align-items: center;
             transition: 0.2s;
-            /* Efecto 3D igual a los inputs */
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.08);
         }
         .btn-action:active { transform: scale(0.95); box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); }
 
-        /* MODAL (Basado en el código original) */
+        /* MODAL */
         .modal-overlay {
             position: fixed; inset: 0;
             background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
@@ -264,7 +262,7 @@
 
 <script>
     /* ========================================================
-       CÓDIGO BASE FUNCIONAL INTACTO (Versión Original Cyberpunk)
+       CÓDIGO BASE FUNCIONAL INTACTO 
        ======================================================== */
     
     const brandLogos = {
