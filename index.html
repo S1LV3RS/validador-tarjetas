@@ -87,12 +87,15 @@
             filter: brightness(0) invert(1);
         }
 
-        /* ARREGLO DE NÚMEROS: Tamaño dinámico controlado para no salirse */
+        /* --- ARREGLO DE NÚMEROS DEFINITIVO --- */
         .card-number-display {
             font-family: 'JetBrains Mono', monospace;
-            /* clamp(mínimo, ideal, máximo) asegura que no se rompa la línea */
-            font-size: clamp(1rem, 5.5vw, 1.3rem);
-            letter-spacing: 2.5px;
+            /* Reducido ligeramente para garantizar que quepa en pantallas delgadas */
+            font-size: clamp(0.9rem, 4.5vw, 1.2rem);
+            /* Espacio reducido entre cada dígito */
+            letter-spacing: 1px;
+            /* Espacio controlado entre los grupos de 4 dígitos */
+            word-spacing: 3px;
             text-align: center;
             width: 100%;
             white-space: nowrap;
@@ -265,7 +268,6 @@
        ======================================================== */
     
     const brandLogos = {
-        // Tu URL corregida para Visa
         visa: 'https://upload.wikimedia.org/wikipedia/commons/5/5c/Visa_Inc._logo_%282021%E2%80%93present%29.svg',
         mastercard: 'https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg',
         amex: 'https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo.svg',
@@ -293,7 +295,6 @@
             logo.src = "";
         }
         
-        // Puntos en lugar de asteriscos/hashtags
         document.getElementById('displayNumber').textContent = inputNumber.value || '.... .... .... ....';
         document.getElementById('displayExpiry').textContent = inputExpiry.value || 'MM/AA';
     }
