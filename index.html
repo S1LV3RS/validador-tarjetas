@@ -3,20 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Validator Pro | Chrome Neon</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>Validador | Clean Dark Final</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-body: #020205;
-            --card-surface: #0a0a12;
+            /* Paleta Dark Glassmorphism */
+            --bg-body: #1c1c1e;
+            --bg-container: #333338;
+            --bg-input: #48484e;
+            /* Botón oscuro desvanecido como pediste */
+            --bg-btn-dark: linear-gradient(145deg, #2a2a2e, #1a1a1c);
             --text-main: #ffffff;
-            
-            /* COLORES NEÓN */
-            --neon-cyan: #00ffd2;
-            --neon-pink: #ff00ff;
-            --neon-purple: #bd00ff;
-            
-            --border-color: rgba(0, 255, 210, 0.3);
+            --text-muted: #ebebf599;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,201 +24,173 @@
             background-color: var(--bg-body);
             color: var(--text-main);
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
             min-height: 100vh; 
-            padding: 40px 20px;
-            background-image: 
-                linear-gradient(rgba(0, 255, 210, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 210, 0.03) 1px, transparent 1px);
-            background-size: 30px 30px;
+            padding: 20px;
         }
 
+        /* CONTENEDOR PRINCIPAL TIPO APP */
         .container {
             width: 100%;
             max-width: 380px;
+            background-color: var(--bg-container);
+            border-radius: 35px;
+            padding: 30px 20px;
             display: flex;
             flex-direction: column;
-            gap: 35px;
+            gap: 20px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4), inset 0 1px 1px rgba(255,255,255,0.1);
         }
 
-        /* HEADER ESTILO CROMO/METÁLICO */
-        .header-title { text-align: center; }
-        
+        /* HEADER */
         .header-title h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 900;
-            font-size: 2.3rem;
-            letter-spacing: 1px;
-            margin-bottom: 5px;
-            
-            /* Efecto Metálico (Cromo) */
-            background: linear-gradient(to bottom, #cccccc, #ffffff, #888888, #ffffff, #aaaaaa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            
-            /* Sombra para dar volumen metálico, menos resplandor */
-            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.8));
-        }
-
-        .subtitle {
-            color: var(--neon-cyan);
-            font-size: 0.75rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
+            text-align: center;
             font-weight: 700;
-            text-shadow: 0 0 5px var(--neon-cyan); /* Resplandor más sutil */
-            opacity: 0.8;
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+            color: var(--text-main);
+            margin-bottom: 10px;
+            text-transform: uppercase;
         }
 
         /* TARJETA VIRTUAL */
         .virtual-card {
             width: 100%;
             aspect-ratio: 1.58/1;
-            background: linear-gradient(145deg, #1a1a25, #050508);
-            border-radius: 16px;
+            background: #111111;
+            border-radius: 20px;
             padding: 25px;
             position: relative;
-            border: 2px solid var(--neon-cyan);
-            box-shadow: 
-                0 0 20px rgba(0, 255, 210, 0.2),
-                inset 0 0 20px rgba(0, 255, 210, 0.1);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            overflow: hidden;
-        }
-        
-        .virtual-card::before {
-            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
-            transform: rotate(30deg); pointer-events: none;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
         }
 
         .card-top { 
             display: flex; 
-            justify-content: space-between; /* Asegura que los elementos se vayan a los extremos */
+            justify-content: space-between; 
             align-items: center;
-            height: 40px; 
-            width: 100%; /* Asegura ancho total */
         }
 
-        /* CHIP NEÓN */
+        /* CHIP PLATEADO */
         .chip {
-            width: 45px; height: 32px;
-            background: transparent;
-            border: 2px solid var(--neon-cyan);
+            width: 42px; height: 30px;
+            background: linear-gradient(135deg, #e0e0e0, #999999);
             border-radius: 6px;
             position: relative;
-            box-shadow: inset 0 0 5px var(--neon-cyan), 0 0 5px var(--neon-cyan);
-            overflow: hidden;
-            flex-shrink: 0; /* Evita que se encoja */
+            opacity: 0.9;
         }
         .chip::after {
-            content: ''; position: absolute; inset: 4px;
-            border: 1px solid var(--neon-purple);
-            border-radius: 4px;
-            background-image: repeating-linear-gradient(90deg, var(--neon-cyan) 0px, var(--neon-cyan) 1px, transparent 1px, transparent 8px);
-            box-shadow: 0 0 5px var(--neon-purple);
-            opacity: 0.8;
+            content: ''; position: absolute; inset: 0;
+            border: 1px solid rgba(0,0,0,0.2); border-radius: 6px;
+            background-image: repeating-linear-gradient(transparent, transparent 7px, rgba(0,0,0,0.1) 7px, rgba(0,0,0,0.1) 8px);
         }
 
-        /* LOGO VISA ALINEADO A LA DERECHA */
         .card-brand-logo { 
-            height: 32px; width: auto; object-fit: contain; 
-            filter: drop-shadow(0 0 8px var(--neon-cyan)) brightness(1.2);
-            /* margin-left: auto; Redundante con space-between pero asegura */
+            height: 25px; width: auto; object-fit: contain; 
+            filter: brightness(0) invert(1); /* Fuerza blanco */
+            transition: opacity 0.3s;
         }
 
-        /* NÚMEROS LINEALES */
+        /* NÚMEROS (Puntos iniciales) */
         .card-number-display {
             font-family: 'JetBrains Mono', monospace;
-            font-size: clamp(1.2rem, 4.5vw, 1.6rem);
-            letter-spacing: 1px; 
-            display: flex; justify-content: center; width: 100%;
-            white-space: nowrap;
-            color: #fff;
-            text-shadow: 0 0 10px rgba(0, 255, 210, 0.8);
-            margin-top: 15px; font-weight: 700;
+            font-size: clamp(1.2rem, 5vw, 1.5rem);
+            letter-spacing: 3px; 
+            display: block;
+            text-align: center;
+            width: 100%;
+            color: #ffffff;
+            margin-top: 10px; font-weight: 600;
         }
 
-        .card-details { display: flex; justify-content: space-between; align-items: flex-end; }
+        .card-bottom { display: flex; justify-content: space-between; align-items: flex-end; }
         
         .detail-group label {
-            display: block; font-size: 0.65rem; text-transform: uppercase;
-            color: var(--neon-cyan); margin-bottom: 4px; letter-spacing: 1px; opacity: 0.8;
+            display: block; font-size: 0.55rem; text-transform: uppercase;
+            color: var(--text-muted); margin-bottom: 4px; font-weight: 500; letter-spacing: 0.5px;
         }
         .detail-group div {
             font-family: 'Inter', sans-serif; font-weight: 600;
-            font-size: 1rem; text-transform: uppercase; letter-spacing: 1px;
-            text-shadow: 0 0 5px rgba(255,255,255,0.5);
+            font-size: 1rem; text-transform: uppercase;
         }
 
         /* FORMULARIO */
-        .input-terminal {
-            background: var(--card-surface);
-            padding: 30px 25px;
-            border-radius: 20px;
-            width: 100%;
-            box-shadow: 0 0 30px rgba(0,0,0,0.5); 
-            border: 1px solid var(--border-color);
-            position: relative;
-            overflow: hidden;
-        }
-        .input-terminal::after {
-             content: ''; position: absolute; bottom: -50px; right: -50px; width: 100px; height: 100px;
-             background: var(--neon-purple); filter: blur(80px); opacity: 0.2; pointer-events: none;
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
 
-        .input-group { margin-bottom: 25px; }
-        
-        .input-label {
-            display: block; font-family: 'Inter', sans-serif; font-weight: 700;
-            font-size: 0.75rem; color: var(--neon-cyan); margin-bottom: 10px;
-            letter-spacing: 1px; text-transform: uppercase;
-            text-shadow: 0 0 5px var(--neon-cyan);
-        }
+        .input-group { position: relative; }
         
         .input-field {
-            width: 100%; padding: 16px;
-            background: rgba(0,0,0,0.6);
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
+            width: 100%; padding: 18px 20px;
+            background: var(--bg-input);
+            border: none;
+            border-radius: 16px;
             color: var(--text-main);
-            font-family: 'JetBrains Mono', monospace; font-size: 1.1rem;
+            font-family: 'Inter', sans-serif; font-size: 1.1rem;
             outline: none; transition: 0.3s;
-        }
-        
-        .input-field:focus { 
-            border-color: var(--neon-pink); 
-            box-shadow: 0 0 20px var(--neon-pink);
-            background: rgba(0,0,0,0.8);
+            text-align: center;
+            letter-spacing: 1px;
         }
         .input-field::placeholder { color: rgba(255,255,255,0.2); }
+        .input-field:focus { background: #55555d; }
 
-        /* BOTÓN RECTANGULAR NEÓN */
+        /* BOTÓN PRINCIPAL */
         .btn-validate {
             width: 100%; padding: 18px; 
-            background: transparent;
-            color: var(--neon-cyan);
-            font-size: 1.1rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
-            cursor: pointer; margin-top: 10px;
-            border: 3px solid var(--neon-cyan);
-            border-radius: 4px;
-            box-shadow: 0 0 10px var(--neon-cyan), inset 0 0 10px var(--neon-cyan);
-            text-shadow: 0 0 10px var(--neon-cyan);
-            transition: all 0.3s ease;
+            background: var(--bg-btn-dark);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 16px;
+            color: var(--text-main);
+            font-size: 1.1rem; font-weight: 600; letter-spacing: 1px;
+            cursor: pointer; margin-top: 5px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            transition: all 0.2s ease;
         }
-        .btn-validate:hover {
-            background: var(--neon-cyan); color: #000;
-            box-shadow: 0 0 30px var(--neon-cyan), 0 0 60px var(--neon-cyan); text-shadow: none;
-        }
-        .btn-validate:active { transform: scale(0.98); }
+        .btn-validate:active { transform: scale(0.97); }
 
-        /* MODAL NEÓN */
+        /* BARRA INFERIOR (Solo 2 botones) */
+        .action-bar {
+            display: flex;
+            justify-content: space-between; /* Empuja los botones a los lados */
+            align-items: center;
+            margin-top: 10px;
+            padding: 0 5px;
+        }
+
+        .btn-action {
+            background: var(--bg-input);
+            border: none;
+            color: var(--text-main);
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.2s;
+        }
+        .btn-action:active { background: #55555d; transform: scale(0.95); }
+
+        .history-count {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            font-size: 0.75rem;
+            padding: 2px 6px;
+            border-radius: 8px;
+        }
+
+        /* MODAL */
         .modal-overlay {
             position: fixed; inset: 0;
-            background: rgba(0,0,0,0.95); backdrop-filter: blur(20px);
+            background: rgba(0,0,0,0.8); backdrop-filter: blur(5px);
             display: flex; justify-content: center; align-items: center;
             opacity: 0; pointer-events: none; transition: 0.3s; z-index: 9999;
             padding: 20px;
@@ -228,34 +198,21 @@
         .modal-overlay.active { opacity: 1; pointer-events: all; }
         
         .modal-content {
-            background: #0a0a12; padding: 40px 30px; border-radius: 16px;
-            text-align: center; width: 100%; max-width: 340px;
-            border: 2px solid var(--neon-cyan);
-            box-shadow: 0 0 50px rgba(0, 255, 210, 0.2);
+            background: var(--bg-container); padding: 40px 30px; border-radius: 24px;
+            text-align: center; width: 100%; max-width: 320px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
             transform: scale(0.9); transition: 0.4s;
         }
         .modal-overlay.active .modal-content { transform: scale(1); }
 
-        .status-icon { 
-            font-size: 5rem; line-height: 1; margin-bottom: 20px; display: block; 
-            font-family: sans-serif;
-        }
-
-        #modalIcon.valid-icon { color: var(--neon-cyan); text-shadow: 0 0 20px var(--neon-cyan), 0 0 40px var(--neon-cyan); }
-        #modalIcon.invalid-icon { color: var(--neon-pink); text-shadow: 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink); }
+        .status-icon { font-size: 4rem; margin-bottom: 15px; display: block; }
         
-        #modalTitle.valid { color: var(--neon-cyan); text-shadow: 0 0 20px var(--neon-cyan); }
-        #modalTitle.invalid { color: var(--neon-pink); text-shadow: 0 0 20px var(--neon-pink); }
-
         .btn-close {
-            margin-top: 25px; background: transparent;
-            color: var(--neon-cyan); border: 2px solid var(--neon-cyan); padding: 12px 35px; 
-            border-radius: 4px; font-weight: 700; cursor: pointer; transition: 0.3s;
-            box-shadow: 0 0 10px var(--neon-cyan);
+            margin-top: 25px; background: var(--bg-input);
+            color: #fff; border: none; padding: 12px 35px; 
+            border-radius: 12px; font-weight: 600; cursor: pointer; transition: 0.3s;
         }
-        .btn-close:hover { background: var(--neon-cyan); color: #000; box-shadow: 0 0 30px var(--neon-cyan); }
-        
-        .hidden { display: none; }
+        .btn-close:active { transform: scale(0.95); }
 
     </style>
 </head>
@@ -263,69 +220,75 @@
 
 <div class="container">
     <div class="header-title">
-        <h1>VALIDATOR PRO</h1>
-        <p class="subtitle">CYBERPUNK SYSTEM V2.0</p>
+        <h1>VALIDADOR</h1>
     </div>
 
-    <div class="virtual-card">
+    <div class="virtual-card" id="cardVisual">
         <div class="card-top">
             <div class="chip"></div>
-            <img src="" class="card-brand-logo hidden" id="cardBrandLogo">
-            <span id="cardBrandText" style="font-weight: 600; font-size: 1.2rem; text-shadow: 0 0 10px #fff;"></span>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" class="card-brand-logo" id="cardBrandLogo">
         </div>
         
-        <div class="card-number-display" id="displayNumber">#### #### #### ####</div>
+        <div class="card-number-display" id="displayNumber">• • • •  • • • •  • • • •  • • • •</div>
         
-        <div class="card-details">
+        <div class="card-bottom">
             <div class="detail-group">
-                <label>TITULAR</label>
-                <div id="displayName">USUARIO</div>
+                <label>TITULAR DEL SISTEMA</label>
+                <div>USUARIO</div>
             </div>
-            <div class="detail-group">
+            <div class="detail-group" style="text-align: right;">
                 <label>VENCE</label>
-                <div id="displayExpiry">MM/AA</div>
+                <div id="displayExpiry">12/29</div>
             </div>
         </div>
     </div>
 
-    <div class="input-terminal">
-        <form id="paymentForm" autocomplete="on" onsubmit="return false;">
-            <div class="input-group">
-                <label class="input-label">NÚMERO DE TARJETA</label>
-                <input type="text" id="inputNumber" class="input-field" 
-                       placeholder="0000 0000 0000 0000" 
-                       maxlength="19" 
-                       name="cc-number" 
-                       autocomplete="cc-number" 
-                       inputmode="numeric">
-            </div>
+    <form class="form-container" autocomplete="on" onsubmit="return false;">
+        
+        <div class="input-group">
+            <input type="text" id="inputNumber" class="input-field" 
+                   placeholder="0000 0000 0000 0000" 
+                   maxlength="19" name="cc-number" autocomplete="cc-number" inputmode="numeric">
+        </div>
 
-            <div class="input-group">
-                <label class="input-label">FECHA (MM/AA)</label>
-                <input type="text" id="inputExpiry" class="input-field" 
-                       placeholder="MM/AA" 
-                       maxlength="5" 
-                       name="cc-exp" 
-                       autocomplete="cc-exp" 
-                       inputmode="numeric">
-            </div>
+        <div class="input-group">
+            <input type="text" id="inputExpiry" class="input-field" 
+                   placeholder="MM/AA" 
+                   maxlength="5" name="cc-exp" autocomplete="cc-exp" inputmode="numeric">
+        </div>
+        
+        <div style="display: none;">
+            <input type="password" id="inputCVC" placeholder="CVC" maxlength="4" autocomplete="cc-csc" name="cc-csc">
+        </div>
 
-            <button class="btn-validate" id="btnValidate">VALIDAR TARJETA</button>
-        </form>
-    </div>
+        <button class="btn-validate" id="btnValidate">VALIDAR AHORA</button>
+    </form>
+
+    <div class="action-bar">
+        <button class="btn-action" id="btnHistorial">
+            Historial <span class="history-count" id="historyCounter">0</span>
+        </button>
+
+
+        <button class="btn-action" id="btnVerificar" onclick="window.location.href=''https://www.gardenweasel.com/checkouts/cn/hWN8yvjbrZES62MczlYIxe8h/en-us?_r=AQABkHtEuKBgcSLy9nq_YB3NcCCeR3dQOJwVwcJyygMy&auto_redirect=false&edge_redirect=true&skip_shop_pay=true">
+            Verificar
+        </button>
+
+        </div>
 </div>
 
 <div class="modal-overlay" id="resultModal">
     <div class="modal-content">
         <div class="status-icon" id="modalIcon"></div>
-        <h2 style="margin-bottom: 10px; font-family: 'JetBrains Mono'; letter-spacing: 2px;" id="modalTitle"></h2>
+        <h2 style="margin-bottom: 10px;" id="modalTitle"></h2>
         <p style="color: #bbb; font-size: 0.9rem; line-height: 1.5;" id="modalMsg"></p>
-        <button class="btn-close" id="btnCloseModal">CERRAR</button>
+        <button class="btn-close" id="btnCloseModal">Cerrar</button>
     </div>
 </div>
 
 <script>
-    // Eliminado el array de nombres aleatorios
+    let validacionesRealizadas = 0;
+
     const brandLogos = {
         visa: 'https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg',
         mastercard: 'https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg',
@@ -338,8 +301,7 @@
     const resultModal = document.getElementById('resultModal');
     const modalTitle = document.getElementById('modalTitle');
     const modalIcon = document.getElementById('modalIcon');
-
-    // Eliminado window.onload para nombres aleatorios
+    const historyCounterBadge = document.getElementById('historyCounter');
 
     function updateCardUI(numberRaw) {
         let brand = null;
@@ -349,13 +311,23 @@
         else if (/^6(?:011|5)/.test(numberRaw)) brand = 'discover';
 
         const logo = document.getElementById('cardBrandLogo');
-        const text = document.getElementById('cardBrandText');
         
-        if (brand) { logo.src = brandLogos[brand]; logo.classList.remove('hidden'); text.textContent = ''; }
-        else { logo.classList.add('hidden'); text.textContent = ''; }
+        // Lógica corregida para evitar el icono roto
+        if (brand) { 
+            logo.src = brandLogos[brand]; 
+            logo.style.display = 'block'; 
+        } else if (numberRaw.length === 0) {
+            // Si está vacío, mostramos Visa por defecto
+            logo.src = brandLogos['visa'];
+            logo.style.display = 'block';
+        } else {
+            // Si el número no coincide con nada, ocultamos la imagen limpiamente
+            logo.style.display = 'none';
+        }
         
-        document.getElementById('displayNumber').textContent = inputNumber.value || '#### #### #### ####';
-        document.getElementById('displayExpiry').textContent = inputExpiry.value || 'MM/AA';
+        let formattedNum = numberRaw.match(/.{1,4}/g)?.join(' ') || '';
+        document.getElementById('displayNumber').textContent = formattedNum || '• • • •  • • • •  • • • •  • • • •';
+        document.getElementById('displayExpiry').textContent = inputExpiry.value || '12/29';
     }
 
     function luhnCheck(val) {
@@ -391,34 +363,40 @@
         updateCardUI(inputNumber.value.replace(/\s/g,''));
     });
 
-    document.getElementById('btnValidate').addEventListener('click', () => {
+    document.getElementById('btnValidate').addEventListener('click', (e) => {
+        e.preventDefault();
         const numRaw = inputNumber.value.replace(/\s/g, '');
         const expRaw = inputExpiry.value;
         const modalMsg = document.getElementById('modalMsg');
 
         let isValid = true;
-        let msg = "Tarjeta verificada correctamente.";
+        let msg = "Tarjeta validada correctamente.";
 
         if (numRaw.length < 13 || !luhnCheck(numRaw)) {
-            isValid = false; msg = "El número de tarjeta es incorrecto (Fallo Luhn).";
+            isValid = false; msg = "El número de tarjeta es incorrecto.";
         } else if (!validateExpiry(expRaw)) {
             isValid = false; msg = "La fecha de vencimiento no es válida.";
         }
 
         if (isValid) {
-            modalIcon.textContent = '✓';
-            modalIcon.className = 'status-icon valid-icon';
+            modalIcon.textContent = '✅';
             modalTitle.textContent = 'VÁLIDA';
-            modalTitle.className = 'valid';
+            modalTitle.style.color = '#4ade80';
+            
+            validacionesRealizadas++;
+            historyCounterBadge.textContent = validacionesRealizadas;
         } else {
-            modalIcon.textContent = '✕';
-            modalIcon.className = 'status-icon invalid-icon';
+            modalIcon.textContent = '❌';
             modalTitle.textContent = 'INVÁLIDA';
-            modalTitle.className = 'invalid';
+            modalTitle.style.color = '#f87171';
         }
         
         modalMsg.textContent = msg;
         resultModal.classList.add('active');
+    });
+
+    document.getElementById('btnHistorial').addEventListener('click', () => {
+        alert("Validaciones exitosas en esta sesión: " + validacionesRealizadas);
     });
 
     document.getElementById('btnCloseModal').addEventListener('click', () => resultModal.classList.remove('active'));
